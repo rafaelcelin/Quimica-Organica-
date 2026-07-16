@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía Didáctica · Química Orgánica 11° · Prof. Rafael Celín PhD</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f0f5ff;--surface:#fff;--surface2:#e4ecff;--border:#c2d0f0;--border2:#9fb3e0;
+  --ink:#0a1a3a;--muted:#3a5080;--sub:#6a85b5;
+  --amber:#1565c0;--amber-l:#ddeaff;--amber-m:#1e88e5;
+  --teal:#0097a7;--teal-l:#d6f5f8;
+  --pink:#6a1b9a;--pink-l:#ede7f6;
+  --blue:#f5a623;--blue-l:#fff8e8;
+  --green:#1a6035;--red:#8b2525;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif;font-size:16px;line-height:1.78}
+
+/* ── COVER ── */
+.cover{background:#0a1a3a;color:#f6f2ec;padding:0;position:relative;overflow:hidden}
+.cover-top{padding:2rem 2rem 0;position:relative}
+.cover-top::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 85% 30%,rgba(30,136,229,.30) 0%,transparent 55%),
+             radial-gradient(ellipse at 15% 80%,rgba(0,151,167,.18) 0%,transparent 50%);pointer-events:none}
+.cover-inner{max-width:980px;margin:0 auto;position:relative}
+
+/* Institutional header */
+.inst-bar{display:flex;align-items:center;gap:1.2rem;padding-bottom:1.4rem;
+  border-bottom:1px solid rgba(246,242,236,.12);flex-wrap:wrap;margin-bottom:1.6rem}
+.escudo{width:72px;height:72px;border-radius:12px;overflow:hidden;
+  border:2px solid rgba(240,180,41,.5);flex-shrink:0;background:#fff}
+.escudo img{width:100%;height:100%;object-fit:cover}
+.inst-text{flex:1}
+.inst-name{font-size:.9rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--amber-m);margin-bottom:.18rem}
+.inst-detail{font-size:.78rem;color:rgba(246,242,236,.5)}
+.prof-box{background:rgba(180,108,0,.12);border:1px solid rgba(240,180,41,.3);
+  border-radius:8px;padding:.5rem 1rem;text-align:right}
+.prof-box .name{font-size:.95rem;font-weight:700;color:#fef3dc}
+.prof-box .role{font-size:.78rem;color:rgba(246,242,236,.55)}
+
+/* Title block */
+.cover-title{padding:1.2rem 0 2rem}
+.guia-tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(240,180,41,.12);
+  border:1px solid rgba(240,180,41,.3);border-radius:2rem;padding:.28rem .9rem;
+  font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--amber-m);margin-bottom:.9rem}
+h1{font-family:"Lora",serif;font-size:clamp(1.9rem,4.5vw,3rem);font-weight:700;
+  line-height:1.1;margin-bottom:.5rem}
+h1 em{color:var(--amber-m);font-style:italic}
+.cover-desc{font-size:.97rem;color:rgba(246,242,236,.6);max-width:560px;margin-bottom:1.8rem}
+.cover-pills{display:flex;gap:.6rem;flex-wrap:wrap}
+.cpill{background:rgba(246,242,236,.07);border:1px solid rgba(246,242,236,.14);
+  border-radius:2rem;padding:.28rem .85rem;font-size:.78rem;color:rgba(246,242,236,.7)}
+
+/* ── NAV ── */
+nav{background:var(--surface);border-bottom:2px solid var(--border);
+  position:sticky;top:0;z-index:200;box-shadow:0 2px 14px rgba(28,22,18,.07)}
+.nav-inner{max-width:980px;margin:0 auto;display:flex;overflow-x:auto}
+.nav-btn{background:none;border:none;border-bottom:3px solid transparent;
+  font-family:"DM Sans",sans-serif;font-size:.86rem;font-weight:600;
+  color:var(--muted);padding:.95rem 1.4rem;cursor:pointer;transition:all .22s;
+  white-space:nowrap;letter-spacing:.02em}
+.nav-btn:hover{color:var(--ink)}
+.nav-btn.active{color:var(--amber);border-bottom-color:var(--amber)}
+.nav-btn.l2.active{color:#0097a7;border-bottom-color:#0097a7}
+.nav-btn.l3.active{color:#6a1b9a;border-bottom-color:#6a1b9a}
+
+/* ── MAIN ── */
+main{max-width:980px;margin:0 auto;padding:2.5rem 2rem 5rem}
+.lesson{display:none}
+.lesson.active{display:block;animation:fadeUp .4s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ── PROGRESS ── */
+.prog{height:3px;border-radius:2px;background:var(--border);margin-bottom:2.2rem}
+.prog-fill{height:100%;border-radius:2px}
+.l1 .prog-fill{background:#1e88e5;width:33%}
+.l2 .prog-fill{background:#0097a7;width:66%}
+.l3 .prog-fill{background:#6a1b9a;width:100%}
+
+/* ── LESSON HEADER ── */
+.lh{display:flex;gap:1.2rem;align-items:flex-start;margin-bottom:2rem;
+  padding-bottom:1.5rem;border-bottom:2px solid var(--border)}
+.lh-num{min-width:62px;height:62px;border-radius:14px;display:flex;align-items:center;
+  justify-content:center;font-family:"Lora",serif;font-size:1.9rem;font-weight:700;
+  color:#fff;flex-shrink:0}
+.l1 .lh-num{background:linear-gradient(135deg,#1565c0,#1e88e5)}
+.l2 .lh-num{background:linear-gradient(135deg,#0097a7,#00bcd4)}
+.l3 .lh-num{background:linear-gradient(135deg,#6a1b9a,#9c27b0)}
+.lh-text h2{font-family:"Lora",serif;font-size:1.8rem;font-weight:700;line-height:1.2;margin-bottom:.25rem}
+.lh-text .meta{font-size:.82rem;color:var(--sub);display:flex;gap:1rem;flex-wrap:wrap}
+
+/* ── OBJECTIVE ── */
+.obj{border-radius:10px;padding:1rem 1.3rem;margin-bottom:2rem;
+  display:flex;gap:.9rem;align-items:flex-start}
+.l1 .obj{background:var(--amber-l);border:1.5px solid rgba(184,108,0,.3)}
+.l2 .obj{background:var(--teal-l);border:1.5px solid rgba(14,110,96,.3)}
+.l3 .obj{background:var(--pink-l);border:1.5px solid rgba(139,37,80,.3)}
+.obj-icon{font-size:1.25rem;flex-shrink:0;margin-top:.1rem}
+.l1 .obj p{color:#1a3f7a}.l2 .obj p{color:#0a4f44}.l3 .obj p{color:#6a1d3d}
+.obj p{font-size:.93rem;line-height:1.65}
+
+/* ── SECTION HEADING ── */
+.sh{font-family:"Lora",serif;font-size:1.22rem;font-weight:700;
+  margin:2.2rem 0 .9rem;padding-left:1rem;line-height:1.3}
+.l1 .sh{border-left:4px solid var(--amber);color:var(--ink)}
+.l2 .sh{border-left:4px solid var(--teal);color:var(--ink)}
+.l3 .sh{border-left:4px solid var(--pink);color:var(--ink)}
+
+/* ── BODY TEXT ── */
+p.body{margin-bottom:.9rem;font-size:.97rem;color:#2a221c;line-height:1.82}
+p.body strong{color:var(--ink)}
+p.body em{font-style:italic;font-family:"Lora",serif}
+
+/* ── DEFINITION ── */
+.def{border-radius:10px;padding:1.2rem 1.6rem;margin:1rem 0;position:relative}
+.l1 .def{background:var(--amber-l);border-left:5px solid var(--amber)}
+.l2 .def{background:var(--teal-l);border-left:5px solid var(--teal)}
+.l3 .def{background:var(--pink-l);border-left:5px solid var(--pink)}
+.def-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.l1 .def-label{color:var(--amber)}.l2 .def-label{color:var(--teal)}.l3 .def-label{color:var(--pink)}
+.def p{font-size:.95rem;font-family:"Lora",serif;font-style:italic;line-height:1.72;color:#1c1612}
+
+/* ── CARDS ── */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin:1rem 0}
+@media(max-width:660px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1.5px solid var(--border);border-radius:10px;padding:1.2rem 1.4rem}
+.ct{font-size:.76rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;margin-bottom:.5rem}
+.l1 .ct{color:var(--amber)}.l2 .ct{color:var(--teal)}.l3 .ct{color:var(--pink)}
+.card p{font-size:.9rem;color:#3a2e28;line-height:1.68}
+.card ul{list-style:none;padding:0;margin:.3rem 0}
+.card ul li{font-size:.88rem;color:#3a2e28;padding:.28rem 0 .28rem 1.2rem;position:relative;
+  border-bottom:1px solid var(--border)}
+.card ul li:last-child{border-bottom:none}
+.card ul li::before{content:"▸";position:absolute;left:0;font-size:.68rem;top:.45rem}
+.l1 .card ul li::before{color:var(--amber)}.l2 .card ul li::before{color:var(--teal)}.l3 .card ul li::before{color:var(--pink)}
+.card.hl{border-width:2px}
+.l1 .card.hl{border-color:var(--amber);background:var(--amber-l)}
+.l2 .card.hl{border-color:var(--teal);background:var(--teal-l)}
+.l3 .card.hl{border-color:var(--pink);background:var(--pink-l)}
+
+/* ── TABLE ── */
+.tbl-wrap{overflow-x:auto;margin:1.2rem 0;border-radius:10px;border:1.5px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th{padding:.7rem 1rem;text-align:left;font-weight:700;font-size:.76rem;letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid var(--border)}
+.l1 th{background:var(--amber-l);color:var(--amber)}
+.l2 th{background:var(--teal-l);color:var(--teal)}
+.l3 th{background:var(--pink-l);color:var(--pink)}
+td{padding:.65rem 1rem;border-bottom:1px solid var(--border);color:#2a221c;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--surface2)}
+
+/* ── FIGURE ── */
+.fig{background:var(--surface);border:1.5px solid var(--border);border-radius:12px;
+  padding:1.5rem;margin:1.5rem 0;text-align:center}
+.fig figcaption{font-size:.8rem;color:var(--sub);margin-top:.8rem;font-style:italic;
+  border-top:1px solid var(--border);padding-top:.6rem}
+
+/* ── CALLOUT ── */
+.callout{border-radius:10px;padding:1rem 1.3rem;display:flex;gap:.8rem;
+  align-items:flex-start;margin:1rem 0;font-size:.91rem}
+.ci{background:var(--blue-l);border:1px solid rgba(26,72,120,.22)}
+.ci p{color:#12356b}
+.cw{background:var(--amber-l);border:1px solid rgba(184,108,0,.3)}
+.cw p{color:#1a3f7a}
+.co{background:#e7f7ed;border:1px solid rgba(26,96,53,.25)}
+.co p{color:#0d4022}
+.c-icon{font-size:1.1rem;flex-shrink:0;margin-top:.05rem}
+
+/* ── INLINE CODE ── */
+.f{font-family:"JetBrains Mono",monospace;background:var(--surface2);
+  border:1px solid var(--border2);border-radius:4px;padding:.1rem .45rem;font-size:.87rem;color:var(--ink)}
+
+/* ── TIMELINE ── */
+.timeline{position:relative;padding-left:2rem;margin:1rem 0}
+.timeline::before{content:"";position:absolute;left:.5rem;top:0;bottom:0;width:2px;background:var(--border2)}
+.tl-item{position:relative;margin-bottom:1.3rem}
+.tl-dot{width:14px;height:14px;border-radius:50%;position:absolute;left:-1.72rem;top:.36rem;border:2px solid var(--surface)}
+.l1 .tl-dot{background:var(--amber)}.l2 .tl-dot{background:var(--teal)}.l3 .tl-dot{background:var(--pink)}
+.tl-year{font-family:"Lora",serif;font-weight:700;font-size:.82rem;color:var(--muted);margin-bottom:.15rem}
+.tl-text{font-size:.9rem;color:#2a221c;line-height:1.65}
+
+/* ── DIDACTIC BOX ── */
+.didact{background:var(--surface2);border-radius:12px;padding:1.4rem 1.6rem;margin:1.2rem 0;
+  border-left:5px solid var(--border2)}
+.l1 .didact{border-left-color:var(--amber-m)}.l2 .didact{border-left-color:var(--teal)}.l3 .didact{border-left-color:var(--pink)}
+.didact-title{font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.6rem}
+.l1 .didact-title{color:var(--amber)}.l2 .didact-title{color:var(--teal)}.l3 .didact-title{color:var(--pink)}
+
+/* ── EXAMPLE BOX ── */
+.example{background:#fff8f0;border:1.5px dashed rgba(184,108,0,.35);border-radius:10px;
+  padding:1rem 1.4rem;margin:.8rem 0}
+.l2 .example{background:#f0faf8;border-color:rgba(14,110,96,.3)}
+.l3 .example{background:#fdf0f6;border-color:rgba(139,37,80,.3)}
+.ex-label{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem}
+.l1 .ex-label{color:var(--amber)}.l2 .ex-label{color:var(--teal)}.l3 .ex-label{color:var(--pink)}
+
+/* ── ACTIVITY ── */
+.activity{border:2px dashed var(--border2);border-radius:12px;padding:1.5rem 1.8rem;margin:2rem 0}
+.act-header{display:flex;align-items:center;gap:.7rem;margin-bottom:1rem}
+.act-badge{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  padding:.22rem .7rem;border-radius:2rem}
+.l1 .act-badge{background:var(--amber-l);color:var(--amber);border:1px solid rgba(184,108,0,.3)}
+.l2 .act-badge{background:var(--teal-l);color:var(--teal);border:1px solid rgba(14,110,96,.3)}
+.l3 .act-badge{background:var(--pink-l);color:var(--pink);border:1px solid rgba(139,37,80,.3)}
+.act-header h4{font-size:1rem;font-weight:700;color:var(--ink)}
+.activity ol{list-style:none;padding:0;counter-reset:ac}
+.activity ol li{padding:.45rem 0 .45rem 1.8rem;position:relative;font-size:.92rem;
+  border-bottom:1px solid var(--border);counter-increment:ac}
+.activity ol li:last-child{border-bottom:none}
+.activity ol li::before{content:counter(ac)".";position:absolute;left:0;font-weight:700}
+.l1 .activity ol li::before{color:var(--amber)}
+.l2 .activity ol li::before{color:var(--teal)}
+.l3 .activity ol li::before{color:var(--pink)}
+
+/* ── PILL ── */
+.pill{display:inline-block;padding:.18rem .62rem;border-radius:2rem;font-size:.78rem;font-weight:700;margin:.1rem}
+.pa{background:var(--amber-l);color:var(--amber);border:1px solid rgba(184,108,0,.3)}
+.pt{background:var(--teal-l);color:var(--teal);border:1px solid rgba(14,110,96,.3)}
+.pp{background:var(--pink-l);color:var(--pink);border:1px solid rgba(139,37,80,.3)}
+.pb{background:var(--blue-l);color:var(--blue);border:1px solid rgba(26,72,120,.3)}
+
+/* ── QUIZ ── */
+.quiz{background:var(--ink);color:#f6f2ec;border-radius:14px;padding:2rem;margin-top:3rem}
+.q-chip{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:.2rem .7rem;border-radius:2rem;margin-bottom:.6rem;display:inline-block}
+.l1 .q-chip{background:rgba(184,108,0,.2);color:var(--amber-m)}
+.l2 .q-chip{background:rgba(14,110,96,.2);color:#15b8a6}
+.l3 .q-chip{background:rgba(139,37,80,.2);color:#d94f7a}
+.q-header h3{font-family:"Lora",serif;font-size:1.22rem;color:#f6f2ec;margin-bottom:1.4rem}
+.qb{margin-bottom:1.8rem}
+.qb p{font-weight:600;color:#f6f2ec;margin-bottom:.7rem;font-size:.95rem}
+.opts{display:flex;flex-direction:column;gap:.45rem}
+.opt{background:rgba(246,242,236,.06);border:1px solid rgba(246,242,236,.12);border-radius:8px;
+  padding:.6rem 1rem;cursor:pointer;font-size:.9rem;color:rgba(246,242,236,.8);
+  font-family:"DM Sans",sans-serif;text-align:left;transition:all .2s}
+.opt:hover{border-color:var(--amber-m);color:#f6f2ec}
+.opt.correct{background:rgba(26,96,53,.25);border-color:#4ade80;color:#4ade80}
+.opt.wrong{background:rgba(139,37,80,.25);border-color:#f87171;color:#f87171}
+.opt.disabled{pointer-events:none}
+.fb{font-size:.85rem;margin-top:.5rem;padding:.5rem .9rem;border-radius:6px;display:none}
+.fb.show{display:block}
+.fb.ok{background:rgba(26,96,53,.2);color:#4ade80}
+.fb.fail{background:rgba(139,37,80,.2);color:#f87171}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);color:rgba(246,242,236,.4);text-align:center;padding:2rem;font-size:.8rem}
+footer strong{color:var(--amber-m)}
+footer .fi{display:flex;justify-content:center;margin-bottom:.8rem}
+footer .fi img{width:52px;height:52px;object-fit:cover;border-radius:8px;
+  border:2px solid rgba(240,180,41,.4)}
+.sep{border:none;border-top:1px solid var(--border);margin:2rem 0}
+</style>
+</head>
+<body>
+
+<!-- ══ COVER ══ -->
+<div class="cover">
+  <div class="cover-top">
+    <div class="cover-inner">
+      <div class="inst-bar">
+        <div class="escudo"><img src="data:image/jpeg;base64,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" alt="Escudo ENSSA"></div>
+        <div class="inst-text">
+          <div class="inst-name">Escuela Normal Superior Santa Ana — ENSSA</div>
+        </div>
+        <div class="prof-box">
+          <div class="name">Prof. Rafael Celín, PhD</div>
+          <div class="role">Área de Ciencias Naturales &amp; Química &nbsp;·&nbsp; Grado 11°</div>
+          <div class="role" style="margin-top:.1rem">Año lectivo 2026</div>
+        </div>
+      </div>
+      <div class="cover-title">
+        <div class="guia-tag">📘 Guía Didáctica · Unidad 1</div>
+        <h1>Fundamentos de la<br><em>Química Orgánica</em></h1>
+        <p class="cover-desc">Material de estudio con fundamento teórico, diagramas originales, actividades pedagógicas y evaluación formativa para el grado undécimo.</p>
+        <div class="cover-pills">
+          <span class="cpill">📖 3 Lecciones completas</span>
+          <span class="cpill">🧪 Química Orgánica 11°</span>
+          <span class="cpill">⏱ ~3 horas de estudio</span>
+          <span class="cpill">🖊 Actividades y evaluación</span>
+          <span class="cpill">📅 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="go(0)">📖 L1 · ¿Qué es la Q. Orgánica?</button>
+    <button class="nav-btn l2" onclick="go(1)">⚛️ L2 · El átomo de carbono</button>
+    <button class="nav-btn l3" onclick="go(2)">🔬 L3 · Hibridación orbital</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ═══════════════════════════ LECCIÓN 1 ═══════════════════════════ -->
+<section class="lesson l1 active" id="l0">
+<div class="prog"><div class="prog-fill"></div></div>
+
+<div class="lh">
+  <div class="lh-num">1</div>
+  <div class="lh-text">
+    <h2>¿Qué es la Química Orgánica?</h2>
+    <div class="meta"><span>📚 Definición · Historia · Clasificación · Importancia</span><span>⏱ Aprox. 70 min</span></div>
+  </div>
+</div>
+
+<div class="obj">
+  <span class="obj-icon">🎯</span>
+  <p><strong>Objetivo de aprendizaje:</strong> Al finalizar la lección, el estudiante definirá la química orgánica como disciplina científica, reconocerá sus hitos históricos fundamentales desde el siglo XVIII hasta el presente, diferenciará los compuestos orgánicos de los inorgánicos a partir de sus propiedades fisicoquímicas, clasificará los compuestos orgánicos según su estructura y grupos funcionales, y valorará su impacto en la salud, la industria y el medio ambiente.</p>
+</div>
+
+<div class="sh">1.1 ¿De qué trata la Química Orgánica? — Definición y contexto</div>
+
+<p class="body">La <strong>Química Orgánica</strong> es la rama de la química dedicada al estudio sistemático de los compuestos del <strong>carbono</strong>: su estructura molecular, propiedades físicas y químicas, métodos de síntesis y los mecanismos mediante los cuales se transforman en otras sustancias. Es una de las disciplinas científicas más vastas que existen, pues abarca desde la molécula de metano (CH₄) hasta el ADN humano, pasando por los plásticos, los fármacos y los combustibles que mueven nuestra civilización.</p>
+
+<p class="body">El término <em>"orgánica"</em> proviene del latín <em>organicus</em>, que significa "propio de los órganos de los seres vivos". Esta denominación histórica recuerda que, durante siglos, los científicos creían que solo los organismos vivos podían producir estos compuestos. Hoy sabemos que esa idea era errónea, pero el nombre quedó como legado de la historia de la ciencia.</p>
+
+<div class="def">
+  <div class="def-label">📌 Definición formal — Química Orgánica</div>
+  <p>"La Química Orgánica es la ciencia que estudia la estructura, propiedades, composición, síntesis, reactividad y mecanismos de reacción de los compuestos del carbono, con excepción de los óxidos de carbono (CO, CO₂), los carbonatos, los carburos metálicos y los cianuros simples, que por convención histórica se clasifican en la química inorgánica." — Adaptado de Morrison & Boyd, Organic Chemistry, 6.ª ed.</p>
+</div>
+
+<div class="callout ci">
+  <span class="c-icon">💡</span>
+  <p><strong>¿Sabías que…?</strong> Aunque el carbono representa apenas el <strong>0.025% de la corteza terrestre</strong> en masa, se conocen más de <strong>10 millones de compuestos orgánicos</strong>, frente a poco más de <strong>500.000 compuestos inorgánicos</strong>. Esta extraordinaria diversidad se debe a propiedades únicas del átomo de carbono que estudiaremos en la Lección 2.</p>
+</div>
+
+<div class="didact">
+  <div class="didact-title">🧑‍🏫 Reflexión pedagógica — ¡Conéctalo con tu vida!</div>
+  <p class="body" style="margin-bottom:0">Antes de continuar, mira a tu alrededor: la ropa que vistes, el plástico de tu silla, la tinta de tu cuaderno, el glucógeno que da energía a tus músculos, las hormonas que regulan tu cuerpo, el jabón con el que te bañas... <strong>Todo eso es química orgánica.</strong> No estás estudiando algo lejano: estás estudiando la química de TU propia existencia.</p>
+</div>
+
+<div class="sh">1.2 Breve historia: del vitalismo a la síntesis moderna</div>
+
+<p class="body">La historia de la Química Orgánica es uno de los ejemplos más hermosos del avance científico: cómo una idea equivocada, sostenida durante siglos por los mejores científicos de su época, fue derrumbada en un solo experimento. Ese momento cambió para siempre la manera en que entendemos la materia viva.</p>
+
+<div class="timeline">
+  <div class="tl-item"><div class="tl-dot"></div>
+    <div class="tl-year">Siglos XVII–XVIII — La Teoría Vitalista</div>
+    <div class="tl-text">Científicos como Georg Ernst Stahl sostienen que los compuestos de los seres vivos poseen una misteriosa <strong>fuerza vital</strong> (<em>vis vitalis</em>) que los hace imposibles de reproducir en laboratorio. Se divide la química en "orgánica" (de seres vivos) e "inorgánica" (de minerales). Esta creencia limitó enormemente el progreso científico durante casi 200 años.</div>
+  </div>
+  <div class="tl-item"><div class="tl-dot"></div>
+    <div class="tl-year">1828 — El Experimento de Wöhler: Caída del Vitalismo</div>
+    <div class="tl-text">El químico alemán <strong>Friedrich Wöhler</strong> calienta cianato de amonio (NH₄CNO, compuesto inorgánico) en su laboratorio y obtiene, para su sorpresa, <strong>urea [(NH₂)₂CO]</strong>, un compuesto orgánico presente en la orina. Escribe a su mentor Berzelius: <em>"Puedo hacer urea sin necesitar riñones ni siquiera un animal"</em>. El vitalismo queda refutado. Nace la Química Orgánica moderna.</div>
+  </div>
+  <div class="tl-item"><div class="tl-dot"></div>
+    <div class="tl-year">1856 — El Primer Colorante Sintético</div>
+    <div class="tl-text"><strong>William Henry Perkin</strong>, con apenas 18 años, intenta sintetizar quinina (un antipalúdico) y obtiene accidentalmente la <em>malveína</em>, el primer colorante orgánico artificial. Este descubrimiento inaugura la industria química orgánica moderna y revoluciona la moda, la medicina y la industria textil.</div>
+  </div>
+  <div class="tl-item"><div class="tl-dot"></div>
+    <div class="tl-year">1858–1865 — Kekulé y la Estructura del Carbono</div>
+    <div class="tl-text"><strong>August Kekulé y Archibald Couper</strong> proponen independientemente que el carbono es <em>tetravalente</em> y puede unirse consigo mismo formando cadenas. En 1865, en un famoso sueño, Kekulé "ve" una serpiente mordiéndose la cola y propone la estructura hexagonal del benceno — uno de los momentos más creativos de la historia científica.</div>
+  </div>
+  <div class="tl-item"><div class="tl-dot"></div>
+    <div class="tl-year">1874 — Nacimiento de la Estereoquímica</div>
+    <div class="tl-text"><strong>Jacobus van't Hoff y Joseph Le Bel</strong> proponen simultáneamente la geometría tridimensional tetraédrica del carbono, explicando por qué algunas moléculas son "imágenes especulares" entre sí. Nace la estereoquímica, fundamental para entender fármacos, fragancias y la actividad biológica de las moléculas.</div>
+  </div>
+  <div class="tl-item"><div class="tl-dot"></div>
+    <div class="tl-year">1931 — Linus Pauling y la Hibridación Orbital</div>
+    <div class="tl-text"><strong>Linus Pauling</strong> aplica la mecánica cuántica para explicar la formación de los enlaces orgánicos mediante el concepto de <em>hibridación orbital</em>, explicando la geometría y las propiedades de los compuestos orgánicos desde los orbitales atómicos. Recibirá el Premio Nobel de Química en 1954.</div>
+  </div>
+  <div class="tl-item"><div class="tl-dot"></div>
+    <div class="tl-year">Siglo XX–XXI — La Química Orgánica de hoy</div>
+    <div class="tl-text">Las técnicas de espectroscopía (IR, RMN, masas) permiten identificar estructuras en minutos. La síntesis total permite fabricar moléculas imposibles en la naturaleza. La química verde busca procesos sostenibles. La bioquímica y la química medicinal se fusionan para diseñar fármacos a medida. Hoy, la Q.O. abarca desde nanomateriales hasta ingeniería genética.</div>
+  </div>
+</div>
+
+<!-- ── FIGURA 1 MEJORADA ── -->
+<div class="sh">1.3 El campo de la Química Orgánica — Figura 1</div>
+<p class="body">Para comprender la magnitud de la Química Orgánica, observa el siguiente mapa que muestra su posición dentro de las ciencias naturales, sus grandes subdisciplinas y los sectores de la vida humana que impacta:</p>
+
+<div class="fig">
+<svg viewBox="0 0 820 560" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:820px">
+
+  <!-- Background -->
+  <rect x="0" y="0" width="820" height="560" rx="16" fill="#f0f5ff"/>
+
+  <!-- Title band -->
+  <rect x="0" y="0" width="820" height="48" rx="16" fill="#1565c0"/>
+  <rect x="0" y="32" width="820" height="16" fill="#1565c0"/>
+  <text x="410" y="29" text-anchor="middle" font-family="Lora,serif" font-size="15" font-weight="700" fill="#fff">Figura 1 — La Química Orgánica y sus conexiones con la ciencia y la sociedad</text>
+
+  <!-- ── CENTRAL NODE ── -->
+  <ellipse cx="410" cy="248" rx="82" ry="46" fill="#1565c0" stroke="#0d47a1" stroke-width="2.5"/>
+  <ellipse cx="410" cy="248" rx="78" ry="42" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.5"/>
+  <text x="410" y="241" text-anchor="middle" font-family="Lora,serif" font-size="14" font-weight="700" fill="#fff">QUÍMICA</text>
+  <text x="410" y="260" text-anchor="middle" font-family="Lora,serif" font-size="14" font-weight="700" fill="#bbdefb">ORGÁNICA</text>
+
+  <!-- ── INORGANIC node (left, clear space) ── -->
+  <line x1="328" y1="248" x2="220" y2="248" stroke="#90a4c8" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <rect x="110" y="225" width="110" height="46" rx="10" fill="#e8edf8" stroke="#3a5080" stroke-width="1.5"/>
+  <text x="165" y="244" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#1a3060">Química</text>
+  <text x="165" y="260" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#1a3060">Inorgánica</text>
+  <!-- tiny sub-boxes inorganic -->
+  <line x1="110" y1="236" x2="74" y2="208" stroke="#c2d0f0" stroke-width="1"/>
+  <rect x="30" y="196" width="44" height="24" rx="5" fill="#e8edf8" stroke="#c2d0f0" stroke-width="1"/>
+  <text x="52" y="212" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#3a5080">Sales</text>
+  <line x1="110" y1="262" x2="74" y2="285" stroke="#c2d0f0" stroke-width="1"/>
+  <rect x="30" y="274" width="44" height="24" rx="5" fill="#e8edf8" stroke="#c2d0f0" stroke-width="1"/>
+  <text x="52" y="290" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#3a5080">Óxidos</text>
+
+  <!-- ── TOP 3 BRANCHES ── (Bioquímica, Farmacología, Petroquímica) — nodes placed high enough -->
+
+  <!-- Bioquímica: top-left -->
+  <line x1="368" y1="210" x2="272" y2="128" stroke="#1565c0" stroke-width="1.8"/>
+  <rect x="186" y="78" width="140" height="50" rx="10" fill="#ddeaff" stroke="#1565c0" stroke-width="2"/>
+  <text x="256" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#0d47a1">🧬 Bioquímica</text>
+  <text x="256" y="116" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">ADN · Proteínas · Enzimas</text>
+
+  <!-- Farmacología: top-center -->
+  <line x1="410" y1="202" x2="410" y2="132" stroke="#1565c0" stroke-width="1.8"/>
+  <rect x="340" y="52" width="140" height="50" rx="10" fill="#ddeaff" stroke="#1565c0" stroke-width="2"/>
+  <text x="410" y="72" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#0d47a1">💊 Farmacología</text>
+  <text x="410" y="90" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">Fármacos · Antibióticos</text>
+
+  <!-- Petroquímica: top-right -->
+  <line x1="452" y1="210" x2="548" y2="128" stroke="#1565c0" stroke-width="1.8"/>
+  <rect x="494" y="78" width="140" height="50" rx="10" fill="#ddeaff" stroke="#1565c0" stroke-width="2"/>
+  <text x="564" y="98" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#0d47a1">⛽ Petroquímica</text>
+  <text x="564" y="116" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">Combustibles · Plásticos</text>
+
+  <!-- ── RIGHT 2 BRANCHES ── (Polímeros, Q.Medicinal) — well to the right, no overlap -->
+  <!-- Polímeros: mid-right -->
+  <line x1="490" y1="228" x2="608" y2="188" stroke="#0097a7" stroke-width="1.8"/>
+  <rect x="612" y="162" width="150" height="50" rx="10" fill="#d6f5f8" stroke="#0097a7" stroke-width="2"/>
+  <text x="687" y="182" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#006064">🧴 Polímeros</text>
+  <text x="687" y="200" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">Plásticos · Fibras</text>
+
+  <!-- Q.Medicinal: mid-lower-right -->
+  <line x1="490" y1="268" x2="608" y2="308" stroke="#0097a7" stroke-width="1.8"/>
+  <rect x="612" y="282" width="150" height="50" rx="10" fill="#d6f5f8" stroke="#0097a7" stroke-width="2"/>
+  <text x="687" y="302" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#006064">🔬 Q. Medicinal</text>
+  <text x="687" y="320" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">Diseño de fármacos</text>
+
+  <!-- ── BOTTOM 3 BRANCHES ── (Agroquímica, Q.Materiales, Q.Alimentos) -->
+
+  <!-- Q. de Alimentos: bottom-left -->
+  <line x1="368" y1="286" x2="272" y2="368" stroke="#6a1b9a" stroke-width="1.8"/>
+  <rect x="186" y="368" width="140" height="50" rx="10" fill="#ede7f6" stroke="#6a1b9a" stroke-width="2"/>
+  <text x="256" y="388" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#4a148c">🍎 Q. Alimentos</text>
+  <text x="256" y="406" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">Aromas · Conservantes</text>
+
+  <!-- Q. de Materiales: bottom-center -->
+  <line x1="410" y1="294" x2="410" y2="364" stroke="#6a1b9a" stroke-width="1.8"/>
+  <rect x="340" y="368" width="140" height="50" rx="10" fill="#ede7f6" stroke="#6a1b9a" stroke-width="2"/>
+  <text x="410" y="388" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#4a148c">🔋 Q. Materiales</text>
+  <text x="410" y="406" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">OLED · Nanotubos</text>
+
+  <!-- Agroquímica: bottom-right -->
+  <line x1="452" y1="286" x2="548" y2="368" stroke="#6a1b9a" stroke-width="1.8"/>
+  <rect x="494" y="368" width="140" height="50" rx="10" fill="#ede7f6" stroke="#6a1b9a" stroke-width="2"/>
+  <text x="564" y="388" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#4a148c">🌾 Agroquímica</text>
+  <text x="564" y="406" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">Pesticidas · Herbicidas</text>
+
+  <!-- ── DASHED DIVIDER (inorganic | organic) — placed left, safe from nodes ── -->
+  <line x1="225" y1="140" x2="225" y2="360" stroke="#90a4c8" stroke-width="1" stroke-dasharray="6,4"/>
+  <rect x="115" y="152" width="68" height="32" rx="6" fill="#e8edf8"/>
+  <text x="149" y="165" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#3a5080" font-style="italic">Química</text>
+  <text x="149" y="178" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#3a5080" font-style="italic">Inorgánica</text>
+  <rect x="232" y="152" width="62" height="32" rx="6" fill="#ddeaff"/>
+  <text x="263" y="165" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#1565c0" font-style="italic">Química</text>
+  <text x="263" y="178" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#1565c0" font-style="italic">Orgánica</text>
+
+  <!-- ── STATS BAR ── -->
+  <rect x="40" y="444" width="740" height="96" rx="12" fill="#ddeaff" stroke="#1565c0" stroke-width="1.5"/>
+  <!-- dividers -->
+  <line x1="290" y1="460" x2="290" y2="524" stroke="#90a4c8" stroke-width="1"/>
+  <line x1="530" y1="460" x2="530" y2="524" stroke="#90a4c8" stroke-width="1"/>
+  <!-- title -->
+  <text x="410" y="466" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#0d47a1">📊 ¿Por qué el carbono domina la química?</text>
+  <!-- stat 1 -->
+  <text x="165" y="492" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="22" font-weight="700" fill="#1565c0">+10M</text>
+  <text x="165" y="512" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">compuestos orgánicos</text>
+  <text x="165" y="526" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#6a85b5">conocidos en 2026</text>
+  <!-- stat 2 -->
+  <text x="410" y="492" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="22" font-weight="700" fill="#0097a7">500K</text>
+  <text x="410" y="512" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">compuestos inorgánicos</text>
+  <text x="410" y="526" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#6a85b5">20× menos que los orgánicos</text>
+  <!-- stat 3 -->
+  <text x="650" y="492" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="22" font-weight="700" fill="#6a1b9a">0.025%</text>
+  <text x="650" y="512" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">del carbono en la corteza</text>
+  <text x="650" y="526" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#6a85b5">pero #1 en compuestos</text>
+</svg>
+<figcaption>Figura 1.1 — Mapa conceptual de la Química Orgánica: su posición en las ciencias, sus subdisciplinas y su impacto en sectores estratégicos de la sociedad (2026)</figcaption>
+</div>
+
+<div class="sh">1.4 Propiedades generales de los compuestos orgánicos</div>
+<p class="body">Los compuestos orgánicos presentan propiedades fisicoquímicas características que se derivan del tipo de enlace que los constituye: el <strong>enlace covalente</strong>. Comprender estas propiedades permite al químico predecir el comportamiento de una molécula antes de sintetizarla o analizarla.</p>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Propiedad</th><th>Compuestos Orgánicos</th><th>Compuestos Inorgánicos</th><th>Fundamento</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Enlace dominante</strong></td><td>Covalente</td><td>Iónico o covalente</td><td>El C forma enlaces C–C y C–H covalentes muy estables</td></tr>
+    <tr><td><strong>Punto de fusión/ebullición</strong></td><td>Generalmente bajos (&lt;300°C)</td><td>Frecuentemente altos (&gt;500°C)</td><td>Fuerzas intermoleculares débiles (Van der Waals) vs. redes iónicas o metálicas</td></tr>
+    <tr><td><strong>Solubilidad en agua</strong></td><td>Baja (muchos son hidrófobos)</td><td>Alta en iónicos</td><td>"Lo semejante disuelve a lo semejante" — polaridad</td></tr>
+    <tr><td><strong>Solubilidad en org.</strong></td><td>Alta (éter, acetona, benceno)</td><td>Baja generalmente</td><td>Similitud de polaridad entre soluto y solvente orgánico</td></tr>
+    <tr><td><strong>Conductividad elétrica</strong></td><td>No conductores (en general)</td><td>Conductores (en solución)</td><td>Sin iones libres en los compuestos covalentes orgánicos</td></tr>
+    <tr><td><strong>Combustibilidad</strong></td><td>Mayoría combustibles</td><td>No combustibles</td><td>C y H se oxidan con O₂ → CO₂ + H₂O + energía</td></tr>
+    <tr><td><strong>Velocidad de reacción</strong></td><td>Generalmente lentas</td><td>A menudo rápidas</td><td>Rotura de enlaces covalentes requiere más energía de activación</td></tr>
+    <tr><td><strong>Isomería</strong></td><td>Muy frecuente</td><td>Poco común</td><td>Múltiples formas de conectar átomos de C → misma fórmula, distinta estructura</td></tr>
+    <tr><td><strong>Número de compuestos</strong></td><td>&gt;10 millones conocidos</td><td>~500.000</td><td>Catenación y tetravalencia del carbono (ver Lección 2)</td></tr>
+  </tbody>
+</table></div>
+
+<div class="didact">
+  <div class="didact-title">🧑‍🏫 Para entender mejor: ¿Por qué el CO₂ es "inorgánico"?</div>
+  <p class="body" style="margin-bottom:.5rem">Una pregunta frecuente es: <em>"Si el CO₂ tiene carbono, ¿por qué no es orgánico?"</em> La respuesta es puramente convencional e histórica: los químicos del siglo XIX establecieron por acuerdo que los óxidos de carbono (CO, CO₂), los carbonatos (CO₃²⁻), los carburos metálicos y los cianuros simples se estudiarían dentro de la química inorgánica, porque su comportamiento se parece más al de los compuestos minerales que al de los compuestos de los seres vivos. Esta es una <strong>convención científica</strong>, no una ley natural.</p>
+</div>
+
+<div class="sh">1.5 Clasificación de los compuestos orgánicos</div>
+<p class="body">Los millones de compuestos orgánicos conocidos se organizan en dos grandes sistemas de clasificación: según su <strong>esqueleto carbonado</strong> (la forma de la cadena de carbonos) y según sus <strong>grupos funcionales</strong> (átomos o grupos de átomos que determinan la reactividad química de la molécula).</p>
+
+<div class="grid2">
+  <div class="card hl">
+    <div class="ct">🔗 Por el esqueleto carbonado</div>
+    <ul>
+      <li><strong>Cadena abierta (acíclica):</strong> Los C se unen en línea, sin cerrarse. Ej: propano, butano.</li>
+      <li><strong>Cadena cerrada (cíclica):</strong> Los C se unen formando un anillo. Ej: ciclohexano.</li>
+      <li><strong>Aromáticos:</strong> Anillos con electrones π deslocalizados. Ej: benceno.</li>
+      <li><strong>Saturados:</strong> Solo enlaces simples C–C.</li>
+      <li><strong>Insaturados:</strong> Al menos un enlace doble o triple.</li>
+    </ul>
+  </div>
+  <div class="card hl">
+    <div class="ct">⚗️ Por los grupos funcionales</div>
+    <ul>
+      <li><strong>Alcoholes (–OH):</strong> etanol, glicerol, colesterol</li>
+      <li><strong>Ácidos carboxílicos (–COOH):</strong> ácido acético, ácido cítrico</li>
+      <li><strong>Ésteres (–COO–):</strong> aromas, aceites vegetales</li>
+      <li><strong>Aminas (–NH₂):</strong> aminoácidos, alcaloides</li>
+      <li><strong>Aldehídos (–CHO):</strong> formaldehído, vainillina</li>
+      <li><strong>Cetonas (&gt;C=O):</strong> acetona, progesterona</li>
+    </ul>
+  </div>
+</div>
+
+<div class="example">
+  <div class="ex-label">📍 Ejemplo cotidiano — Identificando grupos funcionales</div>
+  <p class="body" style="margin-bottom:.5rem">El <strong>vinagre</strong> contiene ácido acético (CH₃–COOH): un ácido carboxílico. El <strong>alcohol antiséptico</strong> es etanol (CH₃–CH₂–OH): un alcohol. La <strong>aspirina</strong> (ácido acetilsalicílico) contiene simultáneamente un grupo ácido carboxílico (–COOH) y un éster (–COO–). La <strong>acetona</strong> para quitar esmalte de uñas es una cetona (CH₃–CO–CH₃). ¡Ya conoces grupos funcionales en tu casa!</p>
+</div>
+
+<div class="sh">1.6 Fuentes e importancia en la vida cotidiana y la industria</div>
+<div class="grid3">
+  <div class="card hl"><div class="ct">💊 Salud y medicina</div><p>Antibióticos como la penicilina (C₁₆H₁₈N₂O₄S), analgésicos, antiinflamatorios, vacunas, hormonas sintéticas, materiales de sutura biodegradables y contraste para resonancia magnética.</p></div>
+  <div class="card hl"><div class="ct">🌾 Agricultura y alimentos</div><p>Plaguicidas, herbicidas, fertilizantes nitrogenados, conservantes alimentarios (benzoato de sodio), colorantes y aromas artificiales, y películas plásticas para invernaderos.</p></div>
+  <div class="card hl"><div class="ct">⛽ Energía y transporte</div><p>Gasolina, diésel y keroseno (mezclas de alcanos C₅–C₁₂), gas natural (metano CH₄), bioetanol de caña de azúcar, biodiesel de aceites vegetales y polímeros para paneles solares.</p></div>
+  <div class="card hl"><div class="ct">🏗️ Materiales y construcción</div><p>Plásticos (PVC, polietileno, poliéster), fibras sintéticas (nailon, licra, kevlar), pinturas, barnices, adhesivos, sellantes, espumas de poliuretano y aislantes térmicos.</p></div>
+  <div class="card hl"><div class="ct">📱 Tecnología y electrónica</div><p>Pantallas OLED (polímeros orgánicos luminiscentes), semiconductores orgánicos, lubricantes de precisión, dieléctricos para condensadores y tintas conductoras para circuitos.</p></div>
+  <div class="card hl"><div class="ct">🌿 Medio ambiente</div><p>Bioplásticos degradables, solventes verdes, catalizadores orgánicos para reducir residuos, sensores moleculares para detectar contaminantes y fitorremediación química.</p></div>
+</div>
+
+<div class="activity">
+  <div class="act-header"><span class="act-badge">✏️ Actividad 1 — 2026</span><h4>Explorando la Química Orgánica en mi entorno</h4></div>
+  <ol>
+    <li><strong>Inventario doméstico:</strong> Revisa 5 productos de tu hogar (cocina, baño, botiquín). Lee las etiquetas e identifica al menos 6 compuestos orgánicos. Completa: nombre, fórmula (si aparece), origen (natural/sintético) y función.</li>
+    <li><strong>Clasificación:</strong> De los compuestos encontrados, determina cuáles son hidrocarburos y cuáles tienen grupos funcionales. Consulta la tabla de esta lección.</li>
+    <li><strong>Línea de tiempo personal:</strong> Investiga y agrega a la línea histórica de esta lección al menos 2 descubrimientos ocurridos entre 1950 y hoy que consideres importantes. Justifica tu elección.</li>
+    <li><strong>Debate reflexivo:</strong> ¿Crees que la Química Orgánica tiene más impactos positivos o negativos en el ambiente? Da 3 argumentos a favor y 3 en contra. Presenta tu postura al grupo.</li>
+    <li><strong>Conexión con la Lección 2:</strong> Antes de continuar, responde: si el carbono forma 4 enlaces siempre, ¿qué pasaría si una molécula tuviera un carbono con solo 3 enlaces? ¿Sería estable? Discute con tu compañero/a.</li>
+  </ol>
+</div>
+
+<div class="quiz">
+  <div class="q-chip">🧠 Evaluación formativa · Lección 1 · 2026</div>
+  <div class="q-header"><h3>Preguntas de comprensión y análisis</h3></div>
+
+  <div class="qb" id="qa1">
+    <p>1. ¿Cuál es la implicación más importante del experimento de Wöhler (1828) para la Química Orgánica?</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qa1')">Demostró que el carbono tiene 4 electrones de valencia</button>
+      <button class="opt" onclick="ans(this,'correct','qa1')">Refutó el vitalismo: un compuesto "orgánico" (urea) puede obtenerse de un compuesto inorgánico en laboratorio</button>
+      <button class="opt" onclick="ans(this,'wrong','qa1')">Descubrió la estructura hexagonal del benceno</button>
+      <button class="opt" onclick="ans(this,'wrong','qa1')">Estableció la clasificación de los grupos funcionales</button>
+    </div>
+    <div class="fb ok" id="fb-qa1-ok">✅ ¡Correcto! El experimento de Wöhler demostró que los compuestos orgánicos no requieren "fuerza vital" para formarse, abriendo la puerta a la síntesis orgánica moderna.</div>
+    <div class="fb fail" id="fb-qa1-fail">❌ Incorrecto. Wöhler obtuvo urea (orgánica) a partir de cianato de amonio (inorgánico), refutando la teoría vitalista que limitaba la química orgánica a los seres vivos.</div>
+  </div>
+
+  <div class="qb" id="qa2">
+    <p>2. ¿Por qué el CO₂ NO se clasifica como compuesto orgánico aunque contiene carbono?</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qa2')">Porque no tiene átomos de hidrógeno unidos al carbono</button>
+      <button class="opt" onclick="ans(this,'correct','qa2')">Por una convención científica histórica: los óxidos de carbono se clasifican como inorgánicos por su comportamiento más cercano a los compuestos minerales</button>
+      <button class="opt" onclick="ans(this,'wrong','qa2')">Porque el CO₂ es un gas y los compuestos orgánicos son líquidos</button>
+      <button class="opt" onclick="ans(this,'wrong','qa2')">Porque no proviene de ningún ser vivo</button>
+    </div>
+    <div class="fb ok" id="fb-qa2-ok">✅ ¡Muy bien! Esta distinción es importante: CO, CO₂, carbonatos, carburos metálicos y cianuros simples son las excepciones convencionales que se tratan como inorgánicos.</div>
+    <div class="fb fail" id="fb-qa2-fail">❌ Incorrecto. La clasificación del CO₂ como inorgánico es una convención científica histórica, no una propiedad absoluta. El criterio real es la similitud de comportamiento con los compuestos minerales.</div>
+  </div>
+
+  <div class="qb" id="qa3">
+    <p>3. Un compuesto orgánico con grupo funcional –COOH pertenece a la familia de los:</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qa3')">Alcoholes</button>
+      <button class="opt" onclick="ans(this,'wrong','qa3')">Ésteres</button>
+      <button class="opt" onclick="ans(this,'correct','qa3')">Ácidos carboxílicos</button>
+      <button class="opt" onclick="ans(this,'wrong','qa3')">Aminas</button>
+    </div>
+    <div class="fb ok" id="fb-qa3-ok">✅ ¡Correcto! El grupo carboxilo –COOH es el grupo funcional característico de los ácidos carboxílicos, como el ácido acético del vinagre (CH₃COOH) o el ácido cítrico del limón.</div>
+    <div class="fb fail" id="fb-qa3-fail">❌ Incorrecto. El grupo –COOH es el carboxilo, propio de los ácidos carboxílicos. Los alcoholes tienen –OH, los ésteres –COO–, y las aminas –NH₂.</div>
+  </div>
+
+  <div class="qb" id="qa4">
+    <p>4. La mayoría de los compuestos orgánicos son malos conductores de electricidad porque:</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qa4')">Tienen alto punto de ebullición</button>
+      <button class="opt" onclick="ans(this,'wrong','qa4')">Son de color oscuro</button>
+      <button class="opt" onclick="ans(this,'correct','qa4')">Sus enlaces covalentes no producen iones libres en solución, necesarios para el transporte de carga eléctrica</button>
+      <button class="opt" onclick="ans(this,'wrong','qa4')">Contienen carbono en su estructura</button>
+    </div>
+    <div class="fb ok" id="fb-qa4-ok">✅ ¡Excelente! La conductividad eléctrica requiere portadores de carga (iones o electrones libres). Las moléculas orgánicas covalentes no generan iones al disolverse. Excepción: ácidos orgánicos que se ionizan parcialmente.</div>
+    <div class="fb fail" id="fb-qa4-fail">❌ Incorrecto. La razón es la naturaleza covalente de sus enlaces: no generan iones libres que puedan transportar corriente eléctrica. El contenido de carbono no es el factor determinante.</div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════ LECCIÓN 2 ═══════════════════════════ -->
+<section class="lesson l2" id="l1">
+<div class="prog"><div class="prog-fill"></div></div>
+<div class="lh">
+  <div class="lh-num">2</div>
+  <div class="lh-text">
+    <h2>El Átomo de Carbono</h2>
+    <div class="meta"><span>⚛️ Estructura · Tetravalencia · Catenación · Tipos de C · Alótropos</span><span>⏱ Aprox. 75 min</span></div>
+  </div>
+</div>
+<div class="obj">
+  <span class="obj-icon">🎯</span>
+  <p><strong>Objetivo:</strong> Identificar la estructura electrónica del átomo de carbono, explicar su tetravalencia y la propiedad de catenación como fundamentos de la diversidad molecular orgánica, clasificar los tipos de carbono según su posición en la cadena, y reconocer los alótropos del carbono como evidencia de la versatilidad de sus enlaces.</p>
+</div>
+
+<div class="sh">2.1 Posición del carbono en la tabla periódica</div>
+<p class="body">El carbono (símbolo <strong>C</strong>) se ubica en el <strong>período 2, grupo IVA (grupo 14)</strong> de la tabla periódica. Con número atómico <strong>Z = 6</strong>, tiene 6 protones, 6 neutrones (en su isótopo más abundante, ¹²C) y 6 electrones. Se clasifica como <strong>no metal</strong>, y sus vecinos inmediatos en el período son el boro (B) y el nitrógeno (N).</p>
+
+<div class="callout ci"><span class="c-icon">🔍</span>
+<p><strong>¿Por qué el carbono y no el silicio?</strong> El silicio (Si) está justo debajo del carbono en la tabla (grupo IVA) y también tiene 4 electrones de valencia. Sin embargo, el enlace Si–Si es mucho más débil (226 kJ/mol) que el C–C (346 kJ/mol), y el Si no puede formar dobles ni triples enlaces estables. Por eso el carbono es el "rey" de los compuestos de cadena larga, mientras el silicio lo es de los minerales cristalinos.</p></div>
+
+<div class="sh">2.2 Estructura electrónica — El secreto está en los cuatro electrones de valencia</div>
+<p class="body">La configuración electrónica del carbono es <span class="f">1s² 2s² 2p²</span>. Esto significa que sus 6 electrones se distribuyen así: 2 en la capa interna K (orbital 1s) y 4 en la capa externa L (2 en el orbital 2s y 2 en los orbitales 2p). Los <strong>4 electrones de la capa L</strong> son los <em>electrones de valencia</em>: los únicos que participan en la formación de enlaces.</p>
+
+<div class="grid2">
+  <div class="card hl">
+    <div class="ct">⚡ Datos atómicos del carbono</div>
+    <table style="margin:0;font-size:.86rem"><tbody>
+      <tr><td>Símbolo</td><td><span class="f">C</span></td></tr>
+      <tr><td>Número atómico Z</td><td><span class="f">6</span></td></tr>
+      <tr><td>Masa atómica</td><td><span class="f">12.011 u</span></td></tr>
+      <tr><td>Configuración</td><td><span class="f">1s² 2s² 2p²</span></td></tr>
+      <tr><td>Por capas</td><td><span class="f">K:2 · L:4</span></td></tr>
+      <tr><td>Electrones de valencia</td><td><span class="f">4</span></td></tr>
+      <tr><td>Electronegatividad</td><td><span class="f">2.55 (Pauling)</span></td></tr>
+      <tr><td>Período / Grupo</td><td><span class="f">2 / IVA (14)</span></td></tr>
+    </tbody></table>
+  </div>
+  <div class="card">
+    <div class="ct">🔲 Diagrama orbital — Estado fundamental</div>
+    <p style="font-size:.82rem;margin-bottom:.6rem;color:var(--muted)">Los electrones se distribuyen siguiendo los principios de Aufbau, Pauli y Hund:</p>
+    <p style="font-family:'JetBrains Mono',monospace;font-size:.9rem;line-height:2;color:#1c1612">
+      1s: &nbsp;[↑↓]<br>
+      2s: &nbsp;[↑↓]<br>
+      2px: [↑ ]<br>
+      2py: [↑ ]<br>
+      2pz: [&nbsp; &nbsp;]
+    </p>
+    <p style="font-size:.8rem;color:var(--sub);margin-top:.4rem">→ 2 e⁻ desapareados en el estado fundamental (problema explicado en la Lección 3).</p>
+  </div>
+</div>
+
+<div class="fig">
+<svg viewBox="0 0 680 370" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:680px">
+<rect x="0" y="0" width="680" height="38" rx="8" fill="#1565c0"/>
+<text x="340" y="19" text-anchor="middle" dominant-baseline="central" font-family="Lora,serif" font-size="13" font-weight="700" fill="#fff">Figura 2.1 — Átomo de carbono: modelo de Bohr y diagrama orbital</text>
+<!-- LEFT PANEL -->
+<rect x="8" y="46" width="298" height="310" rx="10" fill="#ddeaff" stroke="#1565c0" stroke-width="0.5"/>
+<text x="157" y="66" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#0d47a1">Modelo de Bohr</text>
+<!-- Nucleus -->
+<circle cx="157" cy="195" r="32" fill="#0d47a1" stroke="#042C53" stroke-width="1"/>
+<text x="157" y="189" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#b5d4f4">6p⁺</text>
+<text x="157" y="205" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="11" fill="#85b7eb">6n⁰</text>
+<!-- K shell -->
+<circle cx="157" cy="195" r="62" fill="none" stroke="#85b7eb" stroke-width="1" stroke-dasharray="4,3"/>
+<circle cx="157" cy="133" r="11" fill="#0097a7" stroke="#e0f5f1" stroke-width="1.5"/>
+<text x="157" y="133" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">e⁻</text>
+<circle cx="157" cy="257" r="11" fill="#0097a7" stroke="#e0f5f1" stroke-width="1.5"/>
+<text x="157" y="257" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">e⁻</text>
+<!-- K label badge -->
+<rect x="226" y="118" width="64" height="18" rx="5" fill="#e0f5f1" stroke="#0097a7" stroke-width="0.5"/>
+<text x="258" y="127" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#006064">K · n=1 · 2e⁻</text>
+<line x1="226" y1="133" x2="219" y2="133" stroke="#0097a7" stroke-width="0.5" stroke-dasharray="3,2"/>
+<!-- L shell -->
+<circle cx="157" cy="195" r="118" fill="none" stroke="#85b7eb" stroke-width="1" stroke-dasharray="4,3"/>
+<circle cx="157" cy="77" r="11" fill="#1565c0" stroke="#e6edf8" stroke-width="1.5"/>
+<text x="157" y="77" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">e⁻</text>
+<circle cx="275" cy="195" r="11" fill="#1565c0" stroke="#e6edf8" stroke-width="1.5"/>
+<text x="275" y="195" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">e⁻</text>
+<circle cx="157" cy="313" r="11" fill="#1565c0" stroke="#e6edf8" stroke-width="1.5"/>
+<text x="157" y="313" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">e⁻</text>
+<circle cx="39" cy="195" r="11" fill="#1565c0" stroke="#e6edf8" stroke-width="1.5"/>
+<text x="39" y="195" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">e⁻</text>
+<!-- L label badge -->
+<rect x="175" y="55" width="116" height="18" rx="5" fill="#ddeaff" stroke="#1565c0" stroke-width="0.5"/>
+<text x="233" y="64" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#0d47a1">L · n=2 · 4e⁻ (valencia)</text>
+<line x1="175" y1="68" x2="166" y2="77" stroke="#1565c0" stroke-width="0.5" stroke-dasharray="3,2"/>
+<!-- Legend -->
+<rect x="18" y="326" width="128" height="24" rx="5" fill="#e0f5f1" stroke="#0097a7" stroke-width="0.5"/>
+<circle cx="30" cy="338" r="6" fill="#0097a7"/>
+<text x="42" y="338" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#006064">Capa K: 2 e⁻</text>
+<rect x="158" y="326" width="134" height="24" rx="5" fill="#ddeaff" stroke="#1565c0" stroke-width="0.5"/>
+<circle cx="170" cy="338" r="6" fill="#1565c0"/>
+<text x="182" y="338" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#0d47a1">Capa L: 4 e⁻ (valencia)</text>
+<!-- RIGHT PANEL -->
+<rect x="318" y="46" width="354" height="310" rx="10" fill="#fff8e8" stroke="#b86c00" stroke-width="0.5"/>
+<text x="495" y="66" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#7a4600">Diagrama orbital — estado fundamental</text>
+<!-- 1s row -->
+<rect x="340" y="82" width="26" height="36" rx="4" fill="#fef3dc" stroke="#b86c00" stroke-width="0.5"/>
+<text x="353" y="100" text-anchor="middle" dominant-baseline="central" font-family="JetBrains Mono,monospace" font-size="10" fill="#7a4600">1s</text>
+<rect x="380" y="82" width="56" height="36" rx="6" fill="#e0f5f1" stroke="#0097a7" stroke-width="1.5"/>
+<text x="408" y="100" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="16" font-weight="700" fill="#006064">↑↓</text>
+<rect x="444" y="89" width="36" height="22" rx="5" fill="#e0f5f1" stroke="#0097a7" stroke-width="0.5"/>
+<text x="462" y="100" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#006064">2 e⁻</text>
+<text x="490" y="100" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" fill="#9e9188">capa K (interna)</text>
+<!-- 2s row -->
+<rect x="340" y="138" width="26" height="36" rx="4" fill="#fef3dc" stroke="#b86c00" stroke-width="0.5"/>
+<text x="353" y="156" text-anchor="middle" dominant-baseline="central" font-family="JetBrains Mono,monospace" font-size="10" fill="#7a4600">2s</text>
+<rect x="380" y="138" width="56" height="36" rx="6" fill="#ddeaff" stroke="#1565c0" stroke-width="1.5"/>
+<text x="408" y="156" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="16" font-weight="700" fill="#0d47a1">↑↓</text>
+<rect x="444" y="145" width="36" height="22" rx="5" fill="#ddeaff" stroke="#1565c0" stroke-width="0.5"/>
+<text x="462" y="156" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#0d47a1">2 e⁻</text>
+<text x="490" y="148" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" fill="#9e9188">capa L</text>
+<text x="490" y="163" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" fill="#1565c0" font-weight="600">(valencia)</text>
+<!-- 2p row -->
+<rect x="340" y="194" width="26" height="36" rx="4" fill="#fef3dc" stroke="#b86c00" stroke-width="0.5"/>
+<text x="353" y="212" text-anchor="middle" dominant-baseline="central" font-family="JetBrains Mono,monospace" font-size="10" fill="#7a4600">2p</text>
+<rect x="380" y="194" width="50" height="36" rx="6" fill="#ddeaff" stroke="#1565c0" stroke-width="1.5"/>
+<text x="405" y="212" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="16" font-weight="700" fill="#0d47a1">↑</text>
+<rect x="438" y="194" width="50" height="36" rx="6" fill="#ddeaff" stroke="#1565c0" stroke-width="1.5"/>
+<text x="463" y="212" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="16" font-weight="700" fill="#0d47a1">↑</text>
+<rect x="496" y="194" width="50" height="36" rx="6" fill="#f0f5ff" stroke="#c2d0f0" stroke-width="1"/>
+<text x="521" y="212" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="13" fill="#9fb3e0">—</text>
+<!-- sublabels BELOW 2p boxes, in clear zone -->
+<text x="405" y="240" text-anchor="middle" dominant-baseline="central" font-family="JetBrains Mono,monospace" font-size="9" fill="#6a85b5">2px</text>
+<text x="463" y="240" text-anchor="middle" dominant-baseline="central" font-family="JetBrains Mono,monospace" font-size="9" fill="#6a85b5">2py</text>
+<text x="521" y="240" text-anchor="middle" dominant-baseline="central" font-family="JetBrains Mono,monospace" font-size="9" fill="#9e9188">2pz ∅</text>
+<rect x="554" y="201" width="36" height="22" rx="5" fill="#ddeaff" stroke="#1565c0" stroke-width="0.5"/>
+<text x="572" y="212" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#0d47a1">2 e⁻</text>
+<text x="600" y="206" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#1565c0" font-weight="600">(val.)</text>
+<!-- Hund note -->
+<rect x="340" y="256" width="316" height="18" rx="5" fill="#fef3dc" stroke="#b86c00" stroke-width="0.5"/>
+<text x="498" y="265" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#7a4600">Regla de Hund: cada orbital ocupa 1 e⁻ antes de emparejar</text>
+<!-- Summary box -->
+<rect x="340" y="282" width="316" height="60" rx="8" fill="#ddeaff" stroke="#1565c0" stroke-width="1"/>
+<text x="498" y="300" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#0d47a1">Config.: 1s² 2s² 2p²</text>
+<text x="498" y="318" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" fill="#1565c0">Total 4 e⁻ de valencia (capa L)</text>
+<text x="498" y="333" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" fill="#3a5080">→ capacidad de formar 4 enlaces covalentes</text>
+</svg>
+<figcaption>Figura 2.1 — Modelo de Bohr (izq.) y diagrama orbital (der.) del carbono en estado fundamental. Los 4 electrones de la capa L (n=2) son los electrones de valencia.</figcaption>
+</div>
+
+<div class="sh">2.3 Tetravalencia — La clave de la diversidad orgánica</div>
+<p class="body">La <strong>tetravalencia</strong> del carbono es su propiedad de formar siempre exactamente <strong>4 enlaces covalentes</strong>. Esta capacidad se explica por el hecho de que el carbono necesita 4 electrones adicionales para completar su capa de valencia (capa L) con 8 electrones y así alcanzar la configuración estable del neón (gas noble): <span class="f">1s² 2s² 2p⁶</span>. Para lograrlo, comparte electrones con otros átomos formando exactamente 4 enlaces.</p>
+
+<p class="body">Aunque en el estado fundamental solo hay 2 electrones desapareados (los 2 de 2p), cuando el carbono va a formar compuestos, uno de los electrones del orbital 2s se <em>promueve</em> al orbital 2p vacío, generando 4 electrones desapareados. Luego, esos orbitales se <em>hibridan</em> (mezclan) para formar 4 orbitales equivalentes (este proceso se estudia en detalle en la Lección 3).</p>
+
+<div class="grid2">
+  <div class="card hl">
+    <div class="ct">🔗 Tipos de enlace que forma el carbono</div>
+    <ul>
+      <li><strong>Enlace simple C–C (σ):</strong> 1 par de electrones compartidos. Longitud: 154 pm. Energía: 346 kJ/mol</li>
+      <li><strong>Enlace doble C=C (σ + π):</strong> 2 pares compartidos. Longitud: 134 pm. Energía: 614 kJ/mol</li>
+      <li><strong>Enlace triple C≡C (σ + 2π):</strong> 3 pares compartidos. Longitud: 120 pm. Energía: 835 kJ/mol</li>
+      <li><strong>También se une a:</strong> H, O, N, S, P, F, Cl, Br, I</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="ct">📐 Geometría según hibridación (anticipo)</div>
+    <p style="font-size:.88rem;margin-bottom:.6rem">La geometría del carbono depende del tipo de enlace que forma:</p>
+    <ul>
+      <li><strong>4 enlaces simples:</strong> forma tetraédrica, 109.5°</li>
+      <li><strong>1 doble + 2 simples:</strong> forma trigonal plana, 120°</li>
+      <li><strong>1 triple + 1 simple:</strong> forma lineal, 180°</li>
+    </ul>
+    <p style="font-size:.82rem;color:var(--sub);margin-top:.5rem">→ Esto se explica completamente en la Lección 3.</p>
+  </div>
+</div>
+
+<div class="sh">2.4 Catenación — El carbono se encadena a sí mismo</div>
+<p class="body">La <strong>catenación</strong> es la propiedad exclusiva del carbono de unirse covalentemente a otros átomos de carbono, formando cadenas de longitud prácticamente ilimitada. Esta propiedad, combinada con la tetravalencia, explica por qué existen más de 10 millones de compuestos orgánicos conocidos. Las cadenas pueden ser <em>lineales</em>, <em>ramificadas</em>, <em>cerradas</em> y combinar enlaces simples, dobles y triples en infinitas configuraciones.</p>
+
+<div class="def">
+  <div class="def-label">📌 Catenación</div>
+  <p>"La catenación es la capacidad del carbono de formar enlaces covalentes C–C con una energía de enlace de 346 kJ/mol, suficientemente alta para que las cadenas sean estables a temperatura ambiente. Esta propiedad permite construir cadenas de 2 hasta miles de átomos de carbono, lineales, ramificadas o cíclicas, con combinaciones de enlaces simples, dobles y triples."</p>
+</div>
+
+<div class="fig">
+<svg viewBox="0 0 680 490" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:680px">
+<!-- title -->
+<rect x="0" y="0" width="680" height="38" rx="8" fill="#1565c0"/>
+<text x="340" y="19" text-anchor="middle" dominant-baseline="central" font-family="Lora,serif" font-size="13" font-weight="700" fill="#fff">Figura 2.2 — Los seis tipos de cadenas carbonadas</text>
+<!-- ── ROW 1 (y=46..218), 3 boxes w=202 gap=10 left=27 ── -->
+<!-- ① LINEAL -->
+<rect x="27" y="46" width="202" height="172" rx="10" fill="#ddeaff" stroke="#1565c0" stroke-width="1"/>
+<rect x="27" y="46" width="202" height="34" rx="10" fill="#1565c0"/>
+<rect x="27" y="66" width="202" height="14" fill="#1565c0"/>
+<text x="128" y="63" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">① Cadena lineal</text>
+<line x1="69" y1="128" x2="80" y2="128" stroke="#1565c0" stroke-width="2.5"/>
+<line x1="104" y1="128" x2="115" y2="128" stroke="#1565c0" stroke-width="2.5"/>
+<line x1="139" y1="128" x2="150" y2="128" stroke="#1565c0" stroke-width="2.5"/>
+<line x1="164" y1="128" x2="175" y2="128" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="3,2"/>
+<text x="184" y="129" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="15" fill="#1565c0">…</text>
+<circle cx="55" cy="128" r="14" fill="#1565c0"/><text x="55" y="128" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<circle cx="90" cy="128" r="14" fill="#1565c0"/><text x="90" y="128" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<circle cx="125" cy="128" r="14" fill="#1565c0"/><text x="125" y="128" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<circle cx="160" cy="128" r="14" fill="#1565c0"/><text x="160" y="128" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<text x="128" y="157" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" fill="#0d47a1">Todos los C en línea recta</text>
+<rect x="48" y="170" width="160" height="20" rx="5" fill="#fff" stroke="#1565c0" stroke-width="0.5"/>
+<text x="128" y="180" text-anchor="middle" dominant-baseline="central" font-family="JetBrains Mono,monospace" font-size="9" fill="#0d47a1">butano C₄H₁₀</text>
+<!-- ② RAMIFICADA -->
+<rect x="239" y="46" width="202" height="172" rx="10" fill="#eaf3de" stroke="#3b6d11" stroke-width="1"/>
+<rect x="239" y="46" width="202" height="34" rx="10" fill="#3b6d11"/>
+<rect x="239" y="66" width="202" height="14" fill="#3b6d11"/>
+<text x="340" y="63" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">② Cadena ramificada</text>
+<line x1="281" y1="138" x2="289" y2="138" stroke="#3b6d11" stroke-width="2.5"/>
+<line x1="315" y1="138" x2="323" y2="138" stroke="#3b6d11" stroke-width="2.5"/>
+<line x1="351" y1="138" x2="359" y2="138" stroke="#3b6d11" stroke-width="2.5"/>
+<line x1="302" y1="124" x2="302" y2="112" stroke="#3b6d11" stroke-width="2"/>
+<circle cx="267" cy="138" r="14" fill="#3b6d11"/><text x="267" y="138" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<circle cx="302" cy="138" r="14" fill="#3b6d11"/><text x="302" y="138" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<circle cx="337" cy="138" r="14" fill="#3b6d11"/><text x="337" y="138" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<circle cx="372" cy="138" r="14" fill="#3b6d11"/><text x="372" y="138" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<circle cx="302" cy="100" r="13" fill="#3b6d11" opacity=".8"/><text x="302" y="100" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#fff">C</text>
+<text x="340" y="162" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" fill="#27500a">Cadena principal + rama lateral</text>
+<rect x="259" y="172" width="162" height="20" rx="5" fill="#fff" stroke="#3b6d11" stroke-width="0.5"/>
+<text x="340" y="182" text-anchor="middle" dominant-baseline="central" font-family="JetBrains Mono,monospace" font-size="9" fill="#27500a">isobutano C₄H₁₀</text>
+<!-- ③ CÍCLICA -->
+<rect x="451" y="46" width="202" height="172" rx="10" fill="#fbeaf0" stroke="#993556" stroke-width="1"/>
+<rect x="451" y="46" width="202" height="34" rx="10" fill="#993556"/>
+<rect x="451" y="66" width="202" height="14" fill="#993556"/>
+<text x="552" y="63" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">③ Cadena cíclica</text>
+<line x1="552" y1="99" x2="587" y2="119" stroke="#993556" stroke-width="2.5"/>
+<line x1="587" y1="119" x2="587" y2="151" stroke="#993556" stroke-width="2.5"/>
+<line x1="587" y1="151" x2="552" y2="171" stroke="#993556" stroke-width="2.5"/>
+<line x1="552" y1="171" x2="517" y2="151" stroke="#993556" stroke-width="2.5"/>
+<line x1="517" y1="151" x2="517" y2="119" stroke="#993556" stroke-width="2.5"/>
+<line x1="517" y1="119" x2="552" y2="99" stroke="#993556" stroke-width="2.5"/>
+<circle cx="552" cy="135" r="19" fill="none" stroke="#d4537e" stroke-width="1" stroke-dasharray="3,2"/>
+<circle cx="552" cy="89" r="12" fill="#993556"/><text x="552" y="89" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">C</text>
+<circle cx="587" cy="109" r="12" fill="#993556"/><text x="587" y="109" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">C</text>
+<circle cx="587" cy="151" r="12" fill="#993556"/><text x="587" y="151" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">C</text>
+<circle cx="552" cy="171" r="12" fill="#993556"/><text x="552" y="171" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">C</text>
+<circle cx="517" cy="151" r="12" fill="#993556"/><text x="517" y="151" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">C</text>
+<circle cx="517" cy="109" r="12" fill="#993556"/><text x="517" y="109" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#fff">C</text>
+<rect x="471" y="172" width="162" height="20" rx="5" fill="#fff" stroke="#993556" stroke-width="0.5"/>
+<text x="552" y="182" text-anchor="middle" dominant-baseline="central" font-family="JetBrains Mono,monospace" font-size="9" fill="#4b1528">ciclohexano C₆H₁₂</text>
+<!-- ── ROW 2 (y=228..400) ── -->
+<!-- ④ DOBLE ENLACE -->
+<rect x="27" y="228" width="202" height="172" rx="10" fill="#fef3dc" stroke="#b86c00" stroke-width="1"/>
+<rect x="27" y="228" width="202" height="34" rx="10" fill="#b86c00"/>
+<rect x="27" y="248" width="202" height="14" fill="#b86c00"/>
+<text x="128" y="245" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">④ Doble enlace C=C</text>
+<line x1="82" y1="312" x2="113" y2="312" stroke="#b86c00" stroke-width="3"/>
+<line x1="82" y1="324" x2="113" y2="324" stroke="#b86c00" stroke-width="3"/>
+<rect x="83" y="294" width="30" height="14" rx="4" fill="#b86c00"/>
+<text x="98" y="301" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#fef3dc">σ+π</text>
+<line x1="142" y1="318" x2="173" y2="318" stroke="#b86c00" stroke-width="2.5"/>
+<circle cx="68" cy="318" r="14" fill="#b86c00"/><text x="68" y="318" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<circle cx="128" cy="318" r="14" fill="#b86c00"/><text x="128" y="318" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<circle cx="188" cy="318" r="14" fill="#b86c00"/><text x="188" y="318" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<text x="128" y="345" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" fill="#7a4600">Hibridación sp² · 120°</text>
+<rect x="48" y="358" width="160" height="20" rx="5" fill="#fff" stroke="#b86c00" stroke-width="0.5"/>
+<text x="128" y="368" text-anchor="middle" dominant-baseline="central" font-family="JetBrains Mono,monospace" font-size="9" fill="#7a4600">propeno CH₂=CH–CH₃</text>
+<!-- ⑤ TRIPLE ENLACE -->
+<rect x="239" y="228" width="202" height="172" rx="10" fill="#e0f5f1" stroke="#0f6e56" stroke-width="1"/>
+<rect x="239" y="228" width="202" height="34" rx="10" fill="#0f6e56"/>
+<rect x="239" y="248" width="202" height="14" fill="#0f6e56"/>
+<text x="340" y="245" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">⑤ Triple enlace C≡C</text>
+<line x1="314" y1="310" x2="365" y2="310" stroke="#0f6e56" stroke-width="3"/>
+<line x1="314" y1="318" x2="365" y2="318" stroke="#0f6e56" stroke-width="3"/>
+<line x1="314" y1="326" x2="365" y2="326" stroke="#0f6e56" stroke-width="3"/>
+<rect x="317" y="294" width="46" height="14" rx="4" fill="#0f6e56"/>
+<text x="340" y="301" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="8" font-weight="700" fill="#e0f5f1">σ + 2π</text>
+<circle cx="300" cy="318" r="14" fill="#0f6e56"/><text x="300" y="318" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<circle cx="380" cy="318" r="14" fill="#0f6e56"/><text x="380" y="318" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">C</text>
+<text x="340" y="345" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" fill="#085041">Hibridación sp · 180° · lineal</text>
+<rect x="259" y="358" width="162" height="20" rx="5" fill="#fff" stroke="#0f6e56" stroke-width="0.5"/>
+<text x="340" y="368" text-anchor="middle" dominant-baseline="central" font-family="JetBrains Mono,monospace" font-size="9" fill="#04342c">acetileno HC≡CH</text>
+<!-- ⑥ AROMÁTICA -->
+<rect x="451" y="228" width="202" height="172" rx="10" fill="#eeedfe" stroke="#534ab7" stroke-width="1"/>
+<rect x="451" y="228" width="202" height="34" rx="10" fill="#534ab7"/>
+<rect x="451" y="248" width="202" height="14" fill="#534ab7"/>
+<text x="552" y="245" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#fff">⑥ Aromática (benceno)</text>
+<line x1="552" y1="277" x2="585" y2="296" stroke="#534ab7" stroke-width="2.5"/>
+<line x1="585" y1="296" x2="585" y2="334" stroke="#7f77dd" stroke-width="4"/>
+<line x1="585" y1="334" x2="552" y2="353" stroke="#534ab7" stroke-width="2.5"/>
+<line x1="552" y1="353" x2="519" y2="334" stroke="#7f77dd" stroke-width="4"/>
+<line x1="519" y1="334" x2="519" y2="296" stroke="#534ab7" stroke-width="2.5"/>
+<line x1="519" y1="296" x2="552" y2="277" stroke="#7f77dd" stroke-width="4"/>
+<circle cx="552" cy="315" r="18" fill="none" stroke="#afa9ec" stroke-width="1.5" stroke-dasharray="3,2"/>
+<circle cx="552" cy="277" r="11" fill="#534ab7"/><text x="552" y="277" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">C</text>
+<circle cx="585" cy="296" r="11" fill="#534ab7"/><text x="585" y="296" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">C</text>
+<circle cx="585" cy="334" r="11" fill="#534ab7"/><text x="585" y="334" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">C</text>
+<circle cx="552" cy="353" r="11" fill="#534ab7"/><text x="552" y="353" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">C</text>
+<circle cx="519" cy="334" r="11" fill="#534ab7"/><text x="519" y="334" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">C</text>
+<circle cx="519" cy="296" r="11" fill="#534ab7"/><text x="519" y="296" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#fff">C</text>
+<rect x="471" y="358" width="162" height="20" rx="5" fill="#fff" stroke="#534ab7" stroke-width="0.5"/>
+<text x="552" y="368" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#26215c">benceno C₆H₆ · e⁻ π deslocalizados</text>
+<!-- ── LEGEND ── -->
+<rect x="27" y="410" width="626" height="68" rx="8" fill="#f0f5ff" stroke="#c2d0f0" stroke-width="0.5"/>
+<text x="340" y="428" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="#0d47a1">Tipos de enlace y su hibridación</text>
+<rect x="42" y="442" width="136" height="24" rx="6" fill="#ddeaff" stroke="#1565c0" stroke-width="0.5"/>
+<text x="110" y="454" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#0d47a1">Simple C–C · sp³ · 109.5°</text>
+<rect x="188" y="442" width="136" height="24" rx="6" fill="#fef3dc" stroke="#b86c00" stroke-width="0.5"/>
+<text x="256" y="454" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#7a4600">Doble C=C · sp² · 120°</text>
+<rect x="334" y="442" width="136" height="24" rx="6" fill="#e0f5f1" stroke="#0f6e56" stroke-width="0.5"/>
+<text x="402" y="454" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#085041">Triple C≡C · sp · 180°</text>
+<rect x="480" y="442" width="164" height="24" rx="6" fill="#eeedfe" stroke="#534ab7" stroke-width="0.5"/>
+<text x="562" y="454" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#26215c">Aromático C₆ · sp² · deslocal.</text>
+</svg>
+<figcaption>Figura 2.2 — Los seis tipos de cadenas carbonadas: lineal, ramificada, cíclica, con doble enlace, con triple enlace y aromática</figcaption>
+</div>
+
+<div class="sh">2.5 Clasificación de los átomos de carbono según su posición en la cadena</div>
+<p class="body">Dentro de una molécula orgánica, no todos los átomos de carbono son iguales: se clasifican según el número de <em>otros carbonos</em> a los que están directamente enlazados. Esta clasificación es fundamental para predecir la reactividad de la molécula y para nombrarla correctamente según la nomenclatura IUPAC.</p>
+
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Tipo</th><th>Definición</th><th>C vecinos (C–C)</th><th>Representa</th><th>Ejemplo en isobutano</th></tr></thead>
+  <tbody>
+    <tr><td><span class="pill pt">Primario 1°</span></td><td>Unido a 1 C</td><td>1</td><td>Extremos de cadena</td><td>Los 3 –CH₃ terminales</td></tr>
+    <tr><td><span class="pill pb">Secundario 2°</span></td><td>Unido a 2 C</td><td>2</td><td>Interior de cadena lineal</td><td>–CH₂– en butano</td></tr>
+    <tr><td><span class="pill pa">Terciario 3°</span></td><td>Unido a 3 C</td><td>3</td><td>Ramificación sencilla</td><td>El C central del isobutano: &gt;CH–</td></tr>
+    <tr><td><span class="pill pp">Cuaternario 4°</span></td><td>Unido a 4 C</td><td>4</td><td>Doble ramificación</td><td>El C central del neopentano: &gt;C&lt;</td></tr>
+  </tbody>
+</table></div>
+
+<div class="example">
+  <div class="ex-label">📍 Ejemplo — Identificando tipos de carbono en el neopentano C(CH₃)₄</div>
+  <p class="body" style="margin-bottom:.4rem">En el neopentano, el carbono central está unido a <em>4 carbonos</em> → es <strong>cuaternario (4°)</strong>. Los 4 carbonos de los grupos metilo (–CH₃) están cada uno unido a solo <em>1 carbono</em> → son <strong>primarios (1°)</strong>. El neopentano tiene por lo tanto: 1 C cuaternario + 4 C primarios = 5 carbonos en total. ¡Todos los carbonos primarios en el neopentano están a la misma distancia del cuaternario!</p>
+</div>
+
+<div class="sh">2.6 Alótropos del carbono — El mismo elemento, propiedades radicalmente diferentes</div>
+<p class="body">El carbono elemental existe en varias formas alotrópicas: distintas estructuras cristalinas o moleculares del mismo elemento. La diferencia entre el diamante más duro y el grafito más blando es simplemente la forma en que están conectados los mismos átomos de carbono. Esto evidencia que las <em>propiedades no dependen solo de los átomos, sino de cómo están enlazados</em>.</p>
+<div class="grid3">
+  <div class="card hl">
+    <div class="ct">💎 Diamante</div>
+    <p>Cada C unido a 4 C en una red tridimensional tetraédrica (hibridación sp³). Red covalente gigante, sin electrones libres. <strong>Material más duro de la naturaleza</strong>. Transparente, no conductor eléctrico, punto de fusión ~3.550°C. Usos: abrasivos industriales, joyería, recubrimientos de herramientas.</p>
+  </div>
+  <div class="card hl">
+    <div class="ct">✏️ Grafito</div>
+    <p>Capas de hexágonos planos (sp²). Cada C unido a 3 C. El 4.° electrón de valencia es libre y se deslocaliza entre capas → <strong>conduce electricidad</strong>. Las capas se deslizan fácilmente → lubricante. Usos: lápices, electrodos, lubricantes, materiales para baterías de ión litio.</p>
+  </div>
+  <div class="card hl">
+    <div class="ct">⚽ Fullerenos y nanotubos</div>
+    <p>C₆₀ ("buckminsterfulereno"): 60 C en pentágonos y hexágonos, forma de balón de fútbol. Nanotubos de carbono: cilindros de grafeno, resistencia mayor que el acero. Grafeno: monocapa de grafito, conductor excepcional. Usos: nanotecnología, biomedicina, materiales compuestos.</p>
+  </div>
+</div>
+
+<div class="didact">
+  <div class="didact-title">🧑‍🏫 Analogía didáctica — Los alótropos del carbono</div>
+  <p class="body" style="margin-bottom:0">Imagina que el carbono es como bloques de construcción LEGO. Con los mismos bloques puedes construir una torre rígida (diamante, todos conectados en 3D), una alfombra flexible de capas (grafito), o una pelota hueca (fullereno). Los bloques son idénticos — los átomos de carbono — pero la forma en que los <em>conectas</em> determina si el resultado es el material más duro del planeta o el lubricante de tu lápiz. ¡La estructura determina las propiedades!</p>
+</div>
+
+<div class="activity">
+  <div class="act-header"><span class="act-badge">✏️ Actividad 2 — 2026</span><h4>Explorando el átomo de carbono</h4></div>
+  <ol>
+    <li><strong>Modelos moleculares:</strong> Con plastilina y palillos construye metano (CH₄), etano (C₂H₆), propano (C₃H₈) e isobutano (C₄H₁₀). Verifica que cada carbono tiene <em>exactamente 4 enlaces</em>. Dibuja sus fórmulas desarrolladas.</li>
+    <li><strong>Clasificación de carbonos:</strong> En las estructuras dibujadas, identifica y colorea de diferente color los carbonos primarios, secundarios, terciarios y cuaternarios.</li>
+    <li><strong>Comparativa C vs Si:</strong> Investiga y completa la tabla: Energía de enlace C–C vs Si–Si, punto de ebullición del silano (SiH₄) vs metano (CH₄), ¿por qué no existe una "química orgánica del silicio" como la del carbono?</li>
+    <li><strong>Alótropos en la vida real:</strong> Trae a clase un lápiz y un cristal de vidrio. El grafito (en el lápiz) y el diamante (en vidrio cortador industrial) son el mismo elemento. Diseña un experimento sencillo para demostrar que el grafito conduce electricidad y el diamante no.</li>
+    <li><strong>Pregunta de análisis:</strong> Si el carbono tiene solo 2 electrones desapareados en su estado fundamental, ¿de qué manera logra formar 4 enlaces en los compuestos orgánicos? Escribe tu hipótesis y compárala con lo que estudiarás en la Lección 3.</li>
+  </ol>
+</div>
+
+<div class="quiz">
+  <div class="q-chip">🧠 Evaluación formativa · Lección 2 · 2026</div>
+  <div class="q-header"><h3>Preguntas de comprensión y análisis</h3></div>
+  <div class="qb" id="qb1">
+    <p>1. ¿Cuál es la configuración electrónica correcta del carbono (Z=6)?</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qb1')">1s² 2s² 2p⁴</button>
+      <button class="opt" onclick="ans(this,'correct','qb1')">1s² 2s² 2p²</button>
+      <button class="opt" onclick="ans(this,'wrong','qb1')">1s² 2s¹ 2p³</button>
+      <button class="opt" onclick="ans(this,'wrong','qb1')">1s² 2s² 2p⁶</button>
+    </div>
+    <div class="fb ok" id="fb-qb1-ok">✅ ¡Correcto! Z=6 → 6 electrones. Se distribuyen: 2 en 1s (capa K), 2 en 2s y 2 en 2p (capa L). Los 4 de la capa L son los electrones de valencia.</div>
+    <div class="fb fail" id="fb-qb1-fail">❌ Incorrecto. Con Z=6 hay 6 electrones totales. La distribución correcta es 1s²2s²2p²: 2 en la capa K y 4 en la capa L (valencia).</div>
+  </div>
+  <div class="qb" id="qb2">
+    <p>2. Un carbono terciario (3°) en una cadena orgánica está enlazado directamente a:</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qb2')">1 átomo de carbono y 3 de hidrógeno</button>
+      <button class="opt" onclick="ans(this,'wrong','qb2')">2 átomos de carbono y 2 de hidrógeno</button>
+      <button class="opt" onclick="ans(this,'correct','qb2')">3 átomos de carbono y 1 de hidrógeno</button>
+      <button class="opt" onclick="ans(this,'wrong','qb2')">4 átomos de carbono y ningún hidrógeno</button>
+    </div>
+    <div class="fb ok" id="fb-qb2-ok">✅ ¡Correcto! El carbono terciario tiene 3 C vecinos + 1 H, completando sus 4 enlaces totales. Si tuviera 4 C vecinos y ningún H, sería cuaternario.</div>
+    <div class="fb fail" id="fb-qb2-fail">❌ Incorrecto. "Terciario" = 3 carbonos vecinos. Como el C forma 4 enlaces en total, el 4.° enlace va a un H: (3C + 1H). Si tuviera 4C vecinos y ningún H, sería cuaternario.</div>
+  </div>
+  <div class="qb" id="qb3">
+    <p>3. ¿Cuál alótropo del carbono conduce la electricidad y por qué?</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qb3')">Diamante, porque tiene red covalente tridimensional</button>
+      <button class="opt" onclick="ans(this,'correct','qb3')">Grafito, porque sus carbonos sp² tienen un electrón de valencia libre que se deslocaliza entre capas</button>
+      <button class="opt" onclick="ans(this,'wrong','qb3')">Fullereno C₆₀, porque tiene forma esférica</button>
+      <button class="opt" onclick="ans(this,'wrong','qb3')">Ninguno conduce, pues el carbono es no metal</button>
+    </div>
+    <div class="fb ok" id="fb-qb3-ok">✅ ¡Excelente! El grafito tiene carbonos con hibridación sp²: 3 de sus 4 e⁻ de valencia forman la red hexagonal y el 4.° queda libre para conducir corriente entre las capas.</div>
+    <div class="fb fail" id="fb-qb3-fail">❌ Incorrecto. El grafito conduce electricidad. Sus carbonos sp² usan 3 electrones para la red y el 4.° queda libre (electrón π deslocalizado), transportando carga entre las capas.</div>
+  </div>
+  <div class="qb" id="qb4">
+    <p>4. ¿Por qué la catenación del carbono es mucho más extensa que la del silicio?</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qb4')">Porque el carbono tiene menor masa atómica que el silicio</button>
+      <button class="opt" onclick="ans(this,'correct','qb4')">Porque el enlace C–C (346 kJ/mol) es mucho más fuerte y estable que el Si–Si (226 kJ/mol), permitiendo cadenas largas estables</button>
+      <button class="opt" onclick="ans(this,'wrong','qb4')">Porque el silicio no tiene electrones de valencia</button>
+      <button class="opt" onclick="ans(this,'wrong','qb4')">Porque el carbono está en el período 1 de la tabla periódica</button>
+    </div>
+    <div class="fb ok" id="fb-qb4-ok">✅ ¡Muy bien! La mayor energía del enlace C–C se debe al menor tamaño del carbono, que permite mayor solapamiento orbital y por tanto enlaces más fuertes y cadenas largas estables.</div>
+    <div class="fb fail" id="fb-qb4-fail">❌ Incorrecto. La clave está en la energía del enlace: C–C = 346 kJ/mol vs Si–Si = 226 kJ/mol. El silicio es más grande, los orbitales se solapan menos, el enlace es más débil.</div>
+  </div>
+</div>
+</section>
+
+<!-- ═══════════════════════════ LECCIÓN 3 ═══════════════════════════ -->
+<section class="lesson l3" id="l2">
+<div class="prog"><div class="prog-fill"></div></div>
+<div class="lh">
+  <div class="lh-num">3</div>
+  <div class="lh-text">
+    <h2>Hibridación Orbital del Carbono</h2>
+    <div class="meta"><span>🔬 sp³ · sp² · sp · Geometría · Enlace σ y π · Propiedades</span><span>⏱ Aprox. 85 min</span></div>
+  </div>
+</div>
+<div class="obj">
+  <span class="obj-icon">🎯</span>
+  <p><strong>Objetivo:</strong> Explicar el concepto de hibridación orbital como mecanismo de formación de enlaces covalentes equivalentes en el carbono; diferenciar sp³, sp² y sp en cuanto a orbitales involucrados, geometría, ángulos de enlace y compuestos asociados; distinguir entre los enlaces sigma (σ) y pi (π); y relacionar la hibridación con propiedades físicas medibles como longitud de enlace, energía de enlace y geometría molecular.</p>
+</div>
+
+<div class="sh">3.1 El problema que originó el concepto de hibridación</div>
+<p class="body">Al estudiar el metano (CH₄), los científicos se enfrentaron a dos observaciones experimentales que <em>no podían explicarse</em> con la configuración electrónica del carbono en estado fundamental:</p>
+<div class="grid2">
+  <div class="card" style="border-color:var(--pink)">
+    <div class="ct">⚠️ Problema 1 — ¿Por qué 4 y no 2 enlaces?</div>
+    <p>El estado fundamental del C tiene solo <strong>2 electrones desapareados</strong> (en 2px y 2py), lo que predeciría 2 enlaces. Experimentalmente, el carbono <em>siempre</em> forma <strong>4 enlaces</strong>. La configuración de estado fundamental no explica la tetravalencia.</p>
+  </div>
+  <div class="card" style="border-color:var(--pink)">
+    <div class="ct">⚠️ Problema 2 — ¿Por qué todos los enlaces son idénticos?</div>
+    <p>En CH₄, los <strong>4 enlaces C–H son perfectamente iguales</strong> (longitud 109 pm, energía 414 kJ/mol, ángulo 109.5°). Si el C usara orbitales "puros" 2s y 2p, los 4 enlaces tendrían diferente forma y energía. Los experimentos demuestran equivalencia perfecta.</p>
+  </div>
+</div>
+
+<p class="body">La solución fue propuesta por <strong>Linus Pauling</strong> en 1931, aplicando la mecánica cuántica: el concepto de <strong>hibridación orbital</strong>. Los orbitales del carbono se "mezclan matemáticamente" para generar nuevos orbitales híbridos equivalentes, orientados de la manera que minimiza la repulsión electrónica.</p>
+
+<div class="def">
+  <div class="def-label">📌 Hibridación orbital — Definición</div>
+  <p>"La hibridación es el proceso matemático de combinación lineal de orbitales atómicos de un mismo átomo, con energías similares, para generar un conjunto de orbitales híbridos equivalentes entre sí en forma, tamaño y energía, orientados en el espacio para minimizar la repulsión entre pares electrónicos." — Pauling, The Nature of the Chemical Bond, 1939</p>
+</div>
+
+<div class="sh">3.2 Hibridación sp³ — Geometría tetraédrica (ángulo 109.5°)</div>
+<p class="body">En la hibridación <strong>sp³</strong> se mezclan el orbital <strong>2s</strong> y los tres orbitales <strong>2px, 2py y 2pz</strong>, generando <strong>4 orbitales sp³ completamente equivalentes</strong>. Cada orbital sp³ tiene forma de "lágrima asimétrica" con un lóbulo grande orientado hacia afuera del carbono (el que forma el enlace) y un lóbulo pequeño hacia adentro. Los 4 orbitales sp³ se distribuyen apuntando a los <em>cuatro vértices de un tetraedro regular</em>, maximizando la distancia entre ellos y minimizando la repulsión electrónica.</p>
+
+<div class="callout cw"><span class="c-icon">📐</span>
+<p><strong>¿De dónde viene el ángulo de 109.5°?</strong> Este ángulo es el que existe entre dos vértices de un tetraedro regular medido desde el centro. Es el ángulo que <em>maximiza</em> la separación entre 4 objetos distribuidos en una esfera — exactamente lo que necesitan 4 pares de electrones para alejarse lo más posible entre sí (Teoría VSEPR: Repulsión de Pares Electrónicos de la Capa de Valencia).</p></div>
+
+<div class="grid2">
+  <div class="card hl">
+    <div class="ct">📊 Datos de la hibridación sp³</div>
+    <ul>
+      <li><strong>Orbitales mezclados:</strong> 1 (2s) + 3 (2p) = 4 sp³</li>
+      <li><strong>Orbitales p sin hibridar:</strong> 0</li>
+      <li><strong>Geometría:</strong> Tetraédrica</li>
+      <li><strong>Ángulo de enlace:</strong> 109.5°</li>
+      <li><strong>Tipo de enlace:</strong> Solo simples (σ)</li>
+      <li><strong>Rotación libre:</strong> Sí (sin enlace π que la impida)</li>
+      <li><strong>Fórmula general alcanos:</strong> CₙH₂ₙ₊₂</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="ct">🧪 Compuestos con C sp³</div>
+    <ul>
+      <li>Alcanos: metano CH₄, etano C₂H₆, propano C₃H₈</li>
+      <li>Cicloalcanos: ciclohexano C₆H₁₂</li>
+      <li>Halogenuros de alquilo: cloroformo CHCl₃</li>
+      <li>Alcoholes: etanol C₂H₅OH (el C unido al OH)</li>
+      <li>Aminas: metilamina CH₃NH₂</li>
+      <li>Todos los carbonos con solo enlaces simples</li>
+    </ul>
+  </div>
+</div>
+
+<div class="fig">
+<svg viewBox="0 0 700 240" width="100%" xmlns="http://www.w3.org/2000/svg" style="max-width:700px">
+  <text x="350" y="20" text-anchor="middle" font-family="Lora,serif" font-size="13" font-weight="700" fill="#1c1612">Figura 3.1 — Hibridación sp³: orbitales, metano y geometría tetraédrica</text>
+  <!-- orbitales diagram -->
+  <text x="120" y="45" text-anchor="middle" font-size="10" font-weight="700" fill="#8b2550">Antes: estado de valencia</text>
+  <rect x="20" y="52" width="40" height="24" rx="3" fill="#fce8f0" stroke="#8b2550" stroke-width="1.5"/><text x="40" y="68" text-anchor="middle" font-size="11" fill="#6a1d3d" font-weight="700">↑</text><text x="40" y="86" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#9e9188">2s</text>
+  <rect x="66" y="52" width="40" height="24" rx="3" fill="#fce8f0" stroke="#8b2550" stroke-width="1.5"/><text x="86" y="68" text-anchor="middle" font-size="11" fill="#6a1d3d" font-weight="700">↑</text><text x="86" y="86" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#9e9188">2px</text>
+  <rect x="112" y="52" width="40" height="24" rx="3" fill="#fce8f0" stroke="#8b2550" stroke-width="1.5"/><text x="132" y="68" text-anchor="middle" font-size="11" fill="#6a1d3d" font-weight="700">↑</text><text x="132" y="86" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#9e9188">2py</text>
+  <rect x="158" y="52" width="40" height="24" rx="3" fill="#fce8f0" stroke="#8b2550" stroke-width="1.5"/><text x="178" y="68" text-anchor="middle" font-size="11" fill="#6a1d3d" font-weight="700">↑</text><text x="178" y="86" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#9e9188">2pz</text>
+
+  <line x1="210" y1="65" x2="235" y2="65" stroke="#9e9188" stroke-width="1.5"/>
+  <polygon points="235,60 248,65 235,70" fill="#9e9188"/>
+  <text x="225" y="56" text-anchor="middle" font-size="8" fill="#9e9188">hibrid.</text>
+
+  <text x="310" y="45" text-anchor="middle" font-size="10" font-weight="700" fill="#8b2550">Después: 4 orbitales sp³</text>
+  <rect x="255" y="52" width="36" height="24" rx="3" fill="#fce8f0" stroke="#8b2550" stroke-width="2"/><text x="273" y="68" text-anchor="middle" font-size="11" fill="#6a1d3d" font-weight="700">↑</text><text x="273" y="86" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#9e9188">sp³</text>
+  <rect x="296" y="52" width="36" height="24" rx="3" fill="#fce8f0" stroke="#8b2550" stroke-width="2"/><text x="314" y="68" text-anchor="middle" font-size="11" fill="#6a1d3d" font-weight="700">↑</text><text x="314" y="86" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#9e9188">sp³</text>
+  <rect x="337" y="52" width="36" height="24" rx="3" fill="#fce8f0" stroke="#8b2550" stroke-width="2"/><text x="355" y="68" text-anchor="middle" font-size="11" fill="#6a1d3d" font-weight="700">↑</text><text x="355" y="86" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#9e9188">sp³</text>
+  <rect x="378" y="52" width="36" height="24" rx="3" fill="#fce8f0" stroke="#8b2550" stroke-width="2"/><text x="396" y="68" text-anchor="middle" font-size="11" fill="#6a1d3d" font-weight="700">↑</text><text x="396" y="86" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#9e9188">sp³</text>
+  <text x="325" y="104" text-anchor="middle" font-size="9" fill="#8b2550">4 orbitales iguales → 4 enlaces iguales ✓</text>
+
+  <!-- CH4 structure -->
+  <text x="545" y="45" text-anchor="middle" font-size="10" font-weight="700" fill="#8b2550">CH₄ — Geometría tetraédrica</text>
+  <circle cx="545" cy="140" r="20" fill="#8b2550"/>
+  <text x="545" y="146" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">C</text>
+  <line x1="545" y1="120" x2="545" y2="90" stroke="#8b2550" stroke-width="2.5"/>
+  <circle cx="545" cy="80" r="14" fill="#fce8f0" stroke="#8b2550" stroke-width="1.5"/><text x="545" y="85" text-anchor="middle" fill="#8b2550" font-size="11" font-weight="700">H</text>
+  <line x1="563" y1="147" x2="600" y2="162" stroke="#8b2550" stroke-width="2.5"/>
+  <circle cx="612" cy="167" r="14" fill="#fce8f0" stroke="#8b2550" stroke-width="1.5"/><text x="612" y="172" text-anchor="middle" fill="#8b2550" font-size="11" font-weight="700">H</text>
+  <line x1="527" y1="147" x2="490" y2="162" stroke="#8b2550" stroke-width="2.5"/>
+  <circle cx="478" cy="167" r="14" fill="#fce8f0" stroke="#8b2550" stroke-width="1.5"/><text x="478" y="172" text-anchor="middle" fill="#8b2550" font-size="11" font-weight="700">H</text>
+  <line x1="545" y1="160" x2="545" y2="193" stroke="#8b2550" stroke-width="2.5" stroke-dasharray="5,3"/>
+  <circle cx="545" cy="204" r="14" fill="#fce8f0" stroke="#8b2550" stroke-width="1.5" opacity=".65"/><text x="545" y="209" text-anchor="middle" fill="#8b2550" font-size="11" font-weight="700" opacity=".65">H</text>
+  <text x="578" y="126" fill="#8b2550" font-size="12" font-weight="700">109.5°</text>
+  <text x="545" y="230" text-anchor="middle" font-size="9" fill="#9e9188">4 enlaces σ equivalentes · Tetraedro regular</text>
+</svg>
+<figcaption>Figura 3.1 — Hibridación sp³: proceso de formación de los 4 orbitales equivalentes y geometría tetraédrica del metano (CH₄)</figcaption>
+</div>
+
+<div class="sh">3.3 Hibridación sp² — Geometría trigonal plana (ángulo 120°)</div>
+<p class="body">En la hibridación <strong>sp²</strong> se mezclan el orbital 2s y <em>solo 2</em> de los 3 orbitales 2p, generando <strong>3 orbitales sp² equivalentes</strong> en un plano. El orbital 2p restante (<em>no hibridado</em>) queda perpendicular a ese plano y disponible para solaparse lateralmente con el orbital p de un carbono vecino, formando un <strong>enlace π</strong>. La suma del enlace σ (de los sp²) y el enlace π da el <strong>enlace doble C=C</strong>.</p>
+
+<div class="callout ci"><span class="c-icon">🔍</span>
+<p><strong>Enlace σ vs enlace π:</strong> El <strong>sigma (σ)</strong> se forma por solapamiento <em>frontal</em> (axial) de orbitales — tiene simetría cilíndrica y permite la rotación libre. El <strong>pi (π)</strong> se forma por solapamiento <em>lateral</em> de dos orbitales p paralelos — tiene un lóbulo arriba y uno abajo del plano molecular. El enlace π es más débil y más reactivo que el σ, y <strong>bloquea la rotación</strong> alrededor del eje C–C, lo que explica la existencia de los <em>isómeros cis-trans</em> (geométricos) en los alquenos.</p></div>
+
+<div class="grid2">
+  <div class="card hl">
+    <div class="ct">📊 Datos de la hibridación sp²</div>
+    <ul>
+      <li><strong>Orbitales mezclados:</strong> 1 (2s) + 2 (2p) = 3 sp²</li>
+      <li><strong>Orbitales p sin hibridar:</strong> 1 → enlace π</li>
+      <li><strong>Geometría:</strong> Trigonal plana</li>
+      <li><strong>Ángulo de enlace:</strong> 120°</li>
+      <li><strong>Tipo de enlace:</strong> 1 doble (σ + π)</li>
+      <li><strong>Rotación libre:</strong> No (el enlace π lo bloquea)</li>
+      <li><strong>Fórmula general alquenos:</strong> CₙH₂ₙ</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="ct">🧪 Compuestos con C sp²</div>
+    <ul>
+      <li>Alquenos: etileno C₂H₄, propeno C₃H₆</li>
+      <li>Benceno y aromáticos: C₆H₆, tolueno</li>
+      <li>Aldehídos: HCHO (formaldehído) — C del C=O</li>
+      <li>Cetonas: CH₃COCH₃ — C del C=O</li>
+      <li>Ácidos carboxílicos: CH₃COOH — C del –COOH</li>
+      <li>Amidas y ésteres — el C del grupo carbonilo</li>
+    </ul>
+  </div>
+</div>
+
+<div class="fig">
+<svg viewBox="0 0 680 460" width="100%" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<marker id="arr32" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+  <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+</defs>
+
+<!-- Title band -->
+<rect x="0" y="0" width="680" height="40" rx="8" fill="#1565c0"/>
+<text x="340" y="20" text-anchor="middle" dominant-baseline="central" font-family="Lora,serif" font-size="14" font-weight="700" fill="#fff">Figura 3.2 — Hibridación sp² — Etileno (C₂H₄)</text>
+
+<!-- LEFT PANEL: Geometría plana -->
+<rect x="8" y="48" width="320" height="290" rx="10" fill="#ddeaff" stroke="#1565c0" stroke-width="1"/>
+<text x="168" y="70" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#0d47a1">Geometría trigonal plana — 120°</text>
+
+<!-- C–H bond lines FIRST -->
+<line x1="140" y1="198" x2="104" y2="144" stroke="#2c5fc4" stroke-width="2"/>
+<line x1="140" y1="198" x2="104" y2="252" stroke="#2c5fc4" stroke-width="2"/>
+<line x1="220" y1="198" x2="256" y2="144" stroke="#2c5fc4" stroke-width="2"/>
+<line x1="220" y1="198" x2="256" y2="252" stroke="#2c5fc4" stroke-width="2"/>
+
+<!-- C=C double bond -->
+<line x1="159" y1="192" x2="201" y2="192" stroke="#0d47a1" stroke-width="3.5"/>
+<line x1="159" y1="204" x2="201" y2="204" stroke="#0d47a1" stroke-width="3.5"/>
+
+<!-- σ+π badge above double bond -->
+<rect x="153" y="168" width="54" height="20" rx="8" fill="#0d47a1"/>
+<text x="180" y="178" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="700" fill="#ddeaff">σ + π</text>
+
+<!-- Angle arcs at C1 -->
+<path d="M 168 198 A 28 28 0 0 0 122 174" fill="none" stroke="#b86c00" stroke-width="1.8"/>
+<path d="M 168 198 A 28 28 0 0 1 122 222" fill="none" stroke="#b86c00" stroke-width="1.8"/>
+
+<!-- 120° labels in clear space -->
+<rect x="145" y="152" width="38" height="18" rx="5" fill="#fff8e8" stroke="#b86c00" stroke-width="1"/>
+<text x="164" y="161" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#7a4600">120°</text>
+<rect x="145" y="228" width="38" height="18" rx="5" fill="#fff8e8" stroke="#b86c00" stroke-width="1"/>
+<text x="164" y="237" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#7a4600">120°</text>
+
+<!-- C atoms on top -->
+<circle cx="140" cy="198" r="18" fill="#1565c0" stroke="#0d47a1" stroke-width="1"/>
+<text x="140" y="198" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#fff">C</text>
+<circle cx="220" cy="198" r="18" fill="#1565c0" stroke="#0d47a1" stroke-width="1"/>
+<text x="220" y="198" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#fff">C</text>
+
+<!-- H atoms -->
+<circle cx="104" cy="144" r="14" fill="#e8edf8" stroke="#2c5fc4" stroke-width="1"/>
+<text x="104" y="144" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#1565c0">H</text>
+<circle cx="104" cy="252" r="14" fill="#e8edf8" stroke="#2c5fc4" stroke-width="1"/>
+<text x="104" y="252" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#1565c0">H</text>
+<circle cx="256" cy="144" r="14" fill="#e8edf8" stroke="#2c5fc4" stroke-width="1"/>
+<text x="256" y="144" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#1565c0">H</text>
+<circle cx="256" cy="252" r="14" fill="#e8edf8" stroke="#2c5fc4" stroke-width="1"/>
+<text x="256" y="252" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#1565c0">H</text>
+
+<!-- Bottom note planarity -->
+<rect x="18" y="302" width="300" height="28" rx="6" fill="#fff" stroke="#90b8e0" stroke-width="0.5"/>
+<text x="168" y="316" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" font-weight="600" fill="#1565c0">Los 6 átomos (2C + 4H) están en el mismo plano</text>
+
+<!-- RIGHT PANEL: El enlace π -->
+<rect x="336" y="48" width="336" height="290" rx="10" fill="#fff8e8" stroke="#b86c00" stroke-width="1"/>
+<text x="504" y="70" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="#7a4600">El enlace π — solapamiento de orbitales p</text>
+
+<!-- Molecular axis in segments (avoids atom circles C1=426,r=18 → 408..444; C2=558,r=18 → 540..576) -->
+<line x1="356" y1="198" x2="408" y2="198" stroke="#9e9188" stroke-width="1" stroke-dasharray="5,3"/>
+<line x1="444" y1="198" x2="540" y2="198" stroke="#9e9188" stroke-width="1" stroke-dasharray="5,3"/>
+<line x1="576" y1="198" x2="662" y2="198" stroke="#9e9188" stroke-width="1" stroke-dasharray="5,3"/>
+
+<!-- σ bond thick blue -->
+<line x1="444" y1="198" x2="540" y2="198" stroke="#1565c0" stroke-width="5"/>
+
+<!-- σ bond label below axis with white rect -->
+<rect x="450" y="206" width="84" height="18" rx="5" fill="#ddeaff" stroke="#1565c0" stroke-width="0.5"/>
+<text x="492" y="215" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#0d47a1">enlace σ (frontal)</text>
+
+<!-- Orbital p stubs dashed (from atom edges) -->
+<line x1="426" y1="180" x2="426" y2="142" stroke="#b86c00" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="426" y1="216" x2="426" y2="254" stroke="#b86c00" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="558" y1="180" x2="558" y2="142" stroke="#b86c00" stroke-width="1.5" stroke-dasharray="4,3"/>
+<line x1="558" y1="216" x2="558" y2="254" stroke="#b86c00" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+<!-- π orbital lobes -->
+<ellipse cx="492" cy="130" rx="70" ry="30" fill="#fcd975" fill-opacity="0.6" stroke="#b86c00" stroke-width="2"/>
+<ellipse cx="492" cy="266" rx="70" ry="30" fill="#fcd975" fill-opacity="0.6" stroke="#b86c00" stroke-width="2"/>
+
+<!-- Lobe labels centered inside ellipses -->
+<text x="492" y="126" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#7a4600">lóbulo π superior</text>
+<text x="492" y="270" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="10" font-weight="700" fill="#7a4600">lóbulo π inferior</text>
+
+<!-- p orbital labels on the sides -->
+<rect x="344" y="153" width="22" height="16" rx="4" fill="#fff8e8" stroke="#b86c00" stroke-width="0.5"/>
+<text x="355" y="161" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#7a4600">p</text>
+<rect x="344" y="228" width="22" height="16" rx="4" fill="#fff8e8" stroke="#b86c00" stroke-width="0.5"/>
+<text x="355" y="236" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#7a4600">p</text>
+<rect x="626" y="153" width="22" height="16" rx="4" fill="#fff8e8" stroke="#b86c00" stroke-width="0.5"/>
+<text x="637" y="161" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#7a4600">p</text>
+<rect x="626" y="228" width="22" height="16" rx="4" fill="#fff8e8" stroke="#b86c00" stroke-width="0.5"/>
+<text x="637" y="236" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="9" fill="#7a4600">p</text>
+
+<!-- C atoms on top of lobes -->
+<circle cx="426" cy="198" r="18" fill="#1565c0" stroke="#0d47a1" stroke-width="1"/>
+<text x="426" y="198" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#fff">C</text>
+<circle cx="558" cy="198" r="18" fill="#1565c0" stroke="#0d47a1" stroke-width="1"/>
+<text x="558" y="198" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#fff">C</text>
+
+<!-- BOTTOM CHIPS -->
+
+<!-- Chip 1 blue: ángulo -->
+<rect x="12" y="350" width="204" height="82" rx="8" fill="#ddeaff" stroke="#1565c0" stroke-width="1"/>
+<text x="114" y="374" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#0d47a1">Ángulo: 120°</text>
+<text x="114" y="395" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="11" fill="#1565c0">Geometría trigonal plana</text>
+<text x="114" y="413" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="11" fill="#1565c0">sp² · 3 grupos de e⁻</text>
+
+<!-- Chip 2 amber: orbital π -->
+<rect x="230" y="350" width="220" height="82" rx="8" fill="#fef3dc" stroke="#b86c00" stroke-width="1"/>
+<text x="340" y="374" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#7a4600">Orbital p sin hibridar</text>
+<text x="340" y="395" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="11" fill="#b86c00">1 orbital p libre por carbono</text>
+<text x="340" y="413" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="11" fill="#b86c00">los dos se solapan → enlace π</text>
+
+<!-- Chip 3 teal: rotación -->
+<rect x="464" y="350" width="204" height="82" rx="8" fill="#e0f4f8" stroke="#0097a7" stroke-width="1"/>
+<text x="566" y="374" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="13" font-weight="700" fill="#006064">Sin rotación libre</text>
+<text x="566" y="395" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="11" fill="#0097a7">El enlace π bloquea la rotación</text>
+<text x="566" y="413" text-anchor="middle" dominant-baseline="central" font-family="DM Sans,sans-serif" font-size="11" fill="#0097a7">→ isómeros cis y trans</text>
+
+</svg>
+<figcaption>Figura 3.2 — Etileno (C₂H₄): geometría sp² trigonal plana (izq.) y representación del enlace π como solapamiento lateral de orbitales p (der.)</figcaption>
+</div>
+
+<div class="sh">3.4 Hibridación sp — Geometría lineal (ángulo 180°)</div>
+<p class="body">En la hibridación <strong>sp</strong> se mezclan el orbital 2s y <em>solo 1</em> de los orbitales 2p, generando <strong>2 orbitales sp equivalentes</strong> orientados en sentidos opuestos (180° entre sí). Los <strong>2 orbitales 2p restantes</strong> —perpendiculares entre sí y al eje molecular— quedan libres y forman <em>dos enlaces π</em> con los orbitales p del carbono vecino. El resultado es un <strong>enlace triple C≡C</strong> = 1 enlace σ + 2 enlaces π. La molécula es perfectamente <em>lineal</em>: los 4 átomos de H–C≡C–H están en línea recta.</p>
+
+<p class="body">El enlace triple es el más corto (120 pm) y más fuerte (835 kJ/mol) de los tres tipos, lo que hace a los alquinos muy <em>reactivos</em>: sus dos enlaces π son atacables por reactivos electrófilos. El acetileno (HC≡CH) se usa en la soldadura oxiacetilénica porque su combustión libera temperaturas superiores a 3.000°C.</p>
+
+<div class="grid2">
+  <div class="card hl">
+    <div class="ct">📊 Datos de la hibridación sp</div>
+    <ul>
+      <li><strong>Orbitales mezclados:</strong> 1 (2s) + 1 (2p) = 2 sp</li>
+      <li><strong>Orbitales p sin hibridar:</strong> 2 → dos enlaces π</li>
+      <li><strong>Geometría:</strong> Lineal</li>
+      <li><strong>Ángulo de enlace:</strong> 180°</li>
+      <li><strong>Tipo de enlace:</strong> Triple (1σ + 2π)</li>
+      <li><strong>Longitud C≡C:</strong> 120 pm (el más corto)</li>
+      <li><strong>Fórmula general alquinos:</strong> CₙH₂ₙ₋₂</li>
+    </ul>
+  </div>
+  <div class="card">
+    <div class="ct">🧪 Compuestos con C sp</div>
+    <ul>
+      <li>Acetileno (etino): HC≡CH — soldadura industrial</li>
+      <li>Propino: CH₃–C≡CH — síntesis orgánica</li>
+      <li>Nitrilos: CH₃–C≡N (acetonitrilo — solvente)</li>
+      <li>Dióxido de carbono: O=C=O (sp, aunque inorgánico)</li>
+      <li>Cumulenos: compuestos con dos C=C adyacentes</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sh">3.5 Tabla comparativa — Los tres tipos de hibridación del carbono</div>
+<div class="tbl-wrap"><table>
+  <thead><tr><th>Hibridación</th><th>Mezclados</th><th>Híbridos</th><th>p libres</th><th>Geometría</th><th>Ángulo</th><th>Enlace</th><th>Longitud</th><th>Energía</th><th>Ejemplo</th></tr></thead>
+  <tbody>
+    <tr><td><span class="pill pp"><strong>sp³</strong></span></td><td>1s+3p</td><td>4</td><td>0</td><td>Tetraédrica</td><td>109.5°</td><td>Solo simples</td><td>C–C: 154 pm</td><td>346 kJ/mol</td><td>CH₄, C₂H₆</td></tr>
+    <tr><td><span class="pill pb"><strong>sp²</strong></span></td><td>1s+2p</td><td>3</td><td>1</td><td>Trigonal plana</td><td>120°</td><td>1 doble (σ+π)</td><td>C=C: 134 pm</td><td>614 kJ/mol</td><td>C₂H₄, C₆H₆</td></tr>
+    <tr><td><span class="pill pt"><strong>sp</strong></span></td><td>1s+1p</td><td>2</td><td>2</td><td>Lineal</td><td>180°</td><td>1 triple (σ+2π)</td><td>C≡C: 120 pm</td><td>835 kJ/mol</td><td>C₂H₂, HCN</td></tr>
+  </tbody>
+</table></div>
+
+<div class="callout co"><span class="c-icon">💡</span>
+<p><strong>Regla mnemotécnica — Determinar la hibridación en 3 segundos:</strong> Cuenta el número de <em>grupos de electrones</em> (átomos enlazados + pares libres) alrededor del carbono. <strong>4 grupos → sp³ &nbsp;·&nbsp; 3 grupos → sp² &nbsp;·&nbsp; 2 grupos → sp</strong>. Un enlace doble cuenta como <strong>1 grupo</strong> (no 2), y un enlace triple también cuenta como <strong>1 grupo</strong> (no 3). Ejemplo: en CH₂=CH₂, cada C tiene 3 grupos (=CH₂ + 2H) → sp².</p></div>
+
+<div class="didact">
+  <div class="didact-title">🧑‍🏫 Conexión con la industria — ¿Para qué sirve saber esto?</div>
+  <p class="body" style="margin-bottom:0">La hibridación no es solo teoría: es una herramienta de predicción con aplicaciones reales. Los químicos medicinales <em>diseñan fármacos</em> eligiendo el tipo de hibridación del carbono para controlar la forma 3D de la molécula y su interacción con el receptor biológico. Los ingenieros de materiales <em>diseñan polímeros</em> eligiendo si las cadenas serán flexibles (sp³, rotación libre) o rígidas (sp², sin rotación). Los fabricantes de pantallas OLED usan sistemas de carbono sp² con electrones π deslocalizados para conseguir que emitan luz. ¡La hibridación está en tu celular!</p>
+</div>
+
+<div class="activity">
+  <div class="act-header"><span class="act-badge">✏️ Actividad 3 — 2026</span><h4>Determinando hibridaciones y conectando con propiedades</h4></div>
+  <ol>
+    <li><strong>Determina la hibridación:</strong> Para cada carbono marcado con asterisco (*), indica sp³, sp² o sp y justifica: <br>a) CH₃–*CH₂–CH₃ &nbsp; b) CH₂=*CH–CH₃ &nbsp; c) HC≡*C–CH₃ &nbsp; d) *C₆H₆ (benceno)</li>
+    <li><strong>Geometría y ángulos:</strong> Dibuja la estructura 3D del etano (C₂H₆) y del etileno (C₂H₄). ¿Cuál es el ángulo H–C–H en cada caso? ¿Por qué son diferentes?</li>
+    <li><strong>Rotación y isomería:</strong> En el 2-buteno (CH₃–CH=CH–CH₃), ¿puede girar el enlace central C=C? Dibuja los isómeros cis y trans. ¿Qué tipo de hibridación impide la rotación?</li>
+    <li><strong>Propiedades y estructura:</strong> Compara los puntos de ebullición del etano (-89°C), etileno (-104°C) y acetileno (-84°C). ¿Cuál relación encuentras con el tipo de hibridación y la longitud del enlace?</li>
+    <li><strong>Investigación:</strong> Busca 2 fármacos que contengan en su estructura al menos un carbono sp² (doble enlace o anillo aromático). ¿Qué importancia tiene esa rigidez estructural para su función biológica?</li>
+    <li><strong>Síntesis creativa:</strong> Diseña una analogía original (no la de Lego) para explicar la hibridación sp³ a un estudiante de grado 9 que nunca ha oído el término "orbital".</li>
+  </ol>
+</div>
+
+<div class="quiz">
+  <div class="q-chip">🧠 Evaluación formativa · Lección 3 · 2026</div>
+  <div class="q-header"><h3>Preguntas de comprensión y análisis</h3></div>
+  <div class="qb" id="qc1">
+    <p>1. ¿Por qué en la hibridación sp² el ángulo de enlace es 120° y no 109.5°?</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qc1')">Porque el carbono tiene menos electrones en sp²</button>
+      <button class="opt" onclick="ans(this,'correct','qc1')">Porque solo hay 3 orbitales sp² que se distribuyen en un plano para minimizar repulsión → 360°/3 = 120°</button>
+      <button class="opt" onclick="ans(this,'wrong','qc1')">Porque el doble enlace es más fuerte que el simple</button>
+      <button class="opt" onclick="ans(this,'wrong','qc1')">Porque el hidrógeno empuja los orbitales del carbono</button>
+    </div>
+    <div class="fb ok" id="fb-qc1-ok">✅ ¡Excelente! Los 3 orbitales sp² se distribuyen en un plano separados 120° entre sí — la distribución que maximiza la distancia entre 3 grupos de electrones en un plano (360°÷3 = 120°).</div>
+    <div class="fb fail" id="fb-qc1-fail">❌ Incorrecto. El ángulo de 120° resulta de distribuir 3 orbitales en el plano para minimizar la repulsión: 360° ÷ 3 grupos = 120° por orbital. En sp³ son 4 grupos → geometría 3D → 109.5°.</div>
+  </div>
+  <div class="qb" id="qc2">
+    <p>2. El enlace π (pi) en el etileno (C₂H₄) impide la rotación alrededor del eje C=C porque:</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qc2')">El enlace π es más fuerte que el σ</button>
+      <button class="opt" onclick="ans(this,'correct','qc2')">El enlace π se forma por solapamiento lateral de orbitales p paralelos; rotar el eje rompería ese solapamiento lateral</button>
+      <button class="opt" onclick="ans(this,'wrong','qc2')">Los átomos de H bloquean físicamente la rotación</button>
+      <button class="opt" onclick="ans(this,'wrong','qc2')">El C sp² tiene más electrones que el sp³</button>
+    </div>
+    <div class="fb ok" id="fb-qc2-ok">✅ ¡Correcto! Para mantener el solapamiento lateral del enlace π, los dos orbitales p deben permanecer paralelos. Rotar el eje destruiría ese solapamiento → ruptura del enlace π → alta barrera de rotación.</div>
+    <div class="fb fail" id="fb-qc2-fail">❌ Incorrecto. El enlace π requiere que los orbitales p estén paralelos para solaparse. Si se rota el eje C–C, los orbitales p dejarían de ser paralelos y el solapamiento lateral (enlace π) desaparecería.</div>
+  </div>
+  <div class="qb" id="qc3">
+    <p>3. ¿Qué hibridación tiene el carbono marcado con * en: CH₃–*C≡CH?</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qc3')">sp³ — 4 grupos alrededor del carbono</button>
+      <button class="opt" onclick="ans(this,'wrong','qc3')">sp² — 3 grupos alrededor del carbono</button>
+      <button class="opt" onclick="ans(this,'correct','qc3')">sp — 2 grupos: el triple enlace (≡C) y el simple (–CH₃)</button>
+      <button class="opt" onclick="ans(this,'wrong','qc3')">No tiene hibridación definida</button>
+    </div>
+    <div class="fb ok" id="fb-qc3-ok">✅ ¡Perfecto! El carbono marcado tiene solo 2 grupos de electrones (el triple enlace hacia la derecha + el simple hacia el –CH₃) → hibridación sp → geometría lineal → ángulo 180°.</div>
+    <div class="fb fail" id="fb-qc3-fail">❌ Incorrecto. Aplica la regla: el C* está unido a 2 grupos (el triple enlace ≡CH cuenta como 1 grupo, y el –CH₃ cuenta como otro grupo) → 2 grupos → hibridación sp → lineal.</div>
+  </div>
+  <div class="qb" id="qc4">
+    <p>4. ¿Cuál de las siguientes moléculas contiene carbonos con DIFERENTE hibridación en la misma estructura?</p>
+    <div class="opts">
+      <button class="opt" onclick="ans(this,'wrong','qc4')">Etano (CH₃–CH₃): ambos C son sp³</button>
+      <button class="opt" onclick="ans(this,'wrong','qc4')">Acetileno (HC≡CH): ambos C son sp</button>
+      <button class="opt" onclick="ans(this,'correct','qc4')">Propeno (CH₂=CH–CH₃): los 2 primeros C son sp² y el tercero es sp³</button>
+      <button class="opt" onclick="ans(this,'wrong','qc4')">Etileno (CH₂=CH₂): ambos C son sp²</button>
+    </div>
+    <div class="fb ok" id="fb-qc4-ok">✅ ¡Excelente! El propeno tiene C1 (=CH₂, sp²) y C2 (=CH–, sp²) en el doble enlace, pero C3 (–CH₃, solo enlaces simples, sp³). ¡Muchas moléculas reales tienen hibridaciones mixtas!</div>
+    <div class="fb fail" id="fb-qc4-fail">❌ Incorrecto. El propeno (CH₂=CH–CH₃) tiene 3 carbonos: los 2 del doble enlace son sp², y el metilo terminal (–CH₃) es sp³. Es uno de los ejemplos más comunes de hibridación mixta.</div>
+  </div>
+</div>
+</section>
+
+</main>
+
+<footer>
+  <div class="fi">
+    <img src="data:image/jpeg;base64,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" alt="Escudo ENSSA">
+  </div>
+  <p><strong>Prof. Rafael Celín, PhD</strong> &nbsp;·&nbsp; Área de Ciencias Naturales &nbsp;·&nbsp; Química Orgánica — Grado 11°</p>
+  <p style="margin-top:.3rem">Escuela Normal Superior Santa Ana (ENSSA) &nbsp;·&nbsp; Baranoa, Atlántico, Colombia</p>
+  <p style="margin-top:.3rem;font-size:.75rem">Guía Didáctica de uso pedagógico &nbsp;·&nbsp; Año lectivo <strong style="color:var(--amber-m)">2026</strong> &nbsp;·&nbsp; Elaborada con fines formativos para el grado undécimo</p>
+</footer>
+
+<script>
+const lessons=document.querySelectorAll(".lesson"),btns=document.querySelectorAll(".nav-btn");
+function go(i){lessons.forEach((l,j)=>l.classList.toggle("active",j===i));btns.forEach((b,j)=>b.classList.toggle("active",j===i));window.scrollTo({top:0,behavior:"smooth"})}
+function ans(btn,type,qid){
+  const b=document.getElementById(qid);
+  b.querySelectorAll(".opt").forEach(o=>o.classList.add("disabled"));
+  btn.classList.add(type==="correct"?"correct":"wrong");
+  if(type==="correct"){document.getElementById("fb-"+qid+"-ok").classList.add("show")}
+  else{document.getElementById("fb-"+qid+"-fail").classList.add("show");
+    b.querySelectorAll(".opt").forEach(o=>{if(o.getAttribute("onclick")&&o.getAttribute("onclick").includes("'correct'"))o.classList.add("correct")})}
+}
+</script>
+</body>
+</html>
